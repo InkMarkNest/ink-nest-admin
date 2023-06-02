@@ -1,7 +1,11 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import devConfig from './config/vite.base.config'
+import prodConfig from './config/vite.prod.config'
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
+export default defineConfig(({ command }) => {
+  if (command === 'serve') {
+    return devConfig;
+  } else {
+    return prodConfig;
+  }
 })
