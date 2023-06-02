@@ -1,14 +1,12 @@
-import { TestComponent } from '@/components'
+import { TestComponent } from '@/components';
 
-function App() {
-
+const App = () => {
   return (
     <>
       <h1>Vite + React</h1>
-      <TestComponent></TestComponent>
+      <TestComponent />
     </>
-  )
-}
+  );
+};
 
-export default App
- 
+export default App;
