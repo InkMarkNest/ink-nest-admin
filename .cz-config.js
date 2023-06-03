@@ -15,6 +15,7 @@ module.exports = {
     { value: 'revert', name: 'revert:   回退' },
     { value: 'build', name: 'build:    打包' },
   ],
+  scopes: ['base'],
   // 消息步骤
   messages: {
     type: '请选择提交类型:',
@@ -28,4 +29,5 @@ module.exports = {
   skipQuestions: ['body', 'footer'],
   // subject文字长度默认是72
   subjectLimit: 72,
+  allowCustomScopes: true,
 };
