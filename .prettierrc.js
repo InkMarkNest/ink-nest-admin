@@ -1,3 +1,5 @@
+// 官方配置自动对类排序
+const prettierPluginTailwindCss = require('prettier-plugin-tailwindcss');
 /** @format */
 module.exports = {
   singleQuote: true,
@@ -23,4 +25,5 @@ module.exports = {
       },
     },
   ],
+  plugins: [prettierPluginTailwindCss],
 };
