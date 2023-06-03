@@ -3,7 +3,7 @@ import { TestComponent } from '@/components';
 const App = () => {
   return (
     <>
-      <h1>Vite + React</h1>
+      <h1 className=" tw-text-emerald-400">Vite + React</h1>
       <TestComponent />
     </>
   );
