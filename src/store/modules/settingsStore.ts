@@ -32,7 +32,7 @@ interface SettingsActions {
 }
 
 /**
- * 设置store，包括状态和操作
+ * 设置系统配置store，包括状态和操作
  */
 type SettingsStore = SettingsState & SettingsActions;
 
@@ -46,4 +46,4 @@ const useSettingsStore = create<SettingsStore>((set) => ({
   setLanguage: (language) => set({ language }),
 }));
 
-export default useSettingsStore;
+export { useSettingsStore, SettingsStore };

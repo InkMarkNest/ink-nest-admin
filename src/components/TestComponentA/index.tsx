@@ -2,10 +2,12 @@ import { FC, useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'antd';
 
-import { useUserStore } from '@/store';
+import { useUserStore, UserStore } from '@/store';
+
+const selector = (state: UserStore) => [state.user, state.setUser];
 
 const TestComponentA: FC = () => {
-  const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
+  const [user, setUser] = useUserStore(selector);
 
   useEffect(() => {
     axios

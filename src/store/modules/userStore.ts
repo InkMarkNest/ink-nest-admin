@@ -49,4 +49,4 @@ const useUserStore = create<UserStore>((set) => ({
   clearUser: () => set({ user: null }),
 }));
 
-export default useUserStore;
+export { useUserStore, UserStore };

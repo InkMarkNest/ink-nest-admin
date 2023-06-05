@@ -38,6 +38,9 @@ interface NotificationActions {
   removeNotification: (id: string) => void;
 }
 
+/**
+ * 设置消息状态store，包括状态和操作
+ */
 type NotificationStore = NotificationState & NotificationActions;
 
 /**
@@ -55,4 +58,4 @@ const useNotificationStore = create<NotificationStore>((set) => ({
     })),
 }));
 
-export default useNotificationStore;
+export { useNotificationStore };
