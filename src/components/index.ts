@@ -1,3 +1,4 @@
-import TestComponent from './TestComponent';
+import TestComponentA from './TestComponentA';
+import TestComponentB from './TestComponentB';
 
-export { TestComponent };
+export { TestComponentA, TestComponentB };
