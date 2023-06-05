@@ -1,4 +1,8 @@
-import create from 'zustand';
+import { create } from 'zustand';
+
+import { setItem, removeItem } from '@/utils';
+
+import { createSelectors } from '../createSelectors';
 
 /**
  * 用户数据类型定义
@@ -50,10 +54,18 @@ const initialState: UserState = {
 /**
  * 用户状态仓库
  */
-const useUserStore = create<UserStore>((set) => ({
+const useUserStoreBase = create<UserStore>((set) => ({
   ...initialState,
-  setUser: (user) => set({ user }),
-  clearUser: () => set({ user: null }),
+  setUser: async (user) => {
+    await setItem<User>('userInfo', user);
+    set({ user });
+  },
+  clearUser: async () => {
+    await removeItem('userInfo');
+    set({ user: null });
+  },
 }));
+
+const useUserStore = createSelectors(useUserStoreBase);
 
 export { useUserStore, UserStore };

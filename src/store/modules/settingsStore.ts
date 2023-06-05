@@ -1,4 +1,6 @@
-import create from 'zustand';
+import { create } from 'zustand';
+
+import { createSelectors } from '../createSelectors';
 
 /**
  * 设置状态定义
@@ -47,10 +49,12 @@ const initialState: SettingsState = {
 /**
  * 系统设置状态仓库
  */
-const useSettingsStore = create<SettingsStore>((set) => ({
+const useSettingsStoreBase = create<SettingsStore>((set) => ({
   ...initialState,
   toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
   setLanguage: (language) => set({ language }),
 }));
+
+const useSettingsStore = createSelectors(useSettingsStoreBase);
 
 export { useSettingsStore, SettingsStore };

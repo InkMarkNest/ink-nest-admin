@@ -1,4 +1,6 @@
-import create from 'zustand';
+import { create } from 'zustand';
+
+import { createSelectors } from '../createSelectors';
 
 enum NotificationType {
   Success = 'success',
@@ -53,7 +55,7 @@ const initialState: NotificationState = {
 /**
  * 消息状态仓库
  */
-const useNotificationStore = create<NotificationStore>((set) => ({
+const useNotificationStoreBase = create<NotificationStore>((set) => ({
   ...initialState,
   addNotification: (notification) =>
     set((state) => ({
@@ -64,5 +66,7 @@ const useNotificationStore = create<NotificationStore>((set) => ({
       notifications: state.notifications.filter((notification) => notification.id !== id),
     })),
 }));
+
+const useNotificationStore = createSelectors(useNotificationStoreBase);
 
 export { useNotificationStore };

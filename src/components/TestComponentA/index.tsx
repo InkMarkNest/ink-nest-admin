@@ -1,13 +1,12 @@
 import { FC, useEffect } from 'react';
 import { Button } from 'antd';
 
-import { useUserStore, UserStore } from '@/store';
+import { useUserStore } from '@/store';
 import { login, getUserInfo } from '@/services';
 
-const selector = (state: UserStore) => [state.user, state.setUser];
-
 const TestComponentA: FC = () => {
-  const [user, setUser] = useUserStore(selector);
+  const user = useUserStore.use.user();
+  const setUser = useUserStore.use.setUser();
 
   const loginUser = async () => {
     try {
