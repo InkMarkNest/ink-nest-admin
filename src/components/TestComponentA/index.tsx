@@ -1,40 +1,39 @@
 import { FC, useEffect } from 'react';
-import axios from 'axios';
 import { Button } from 'antd';
 
 import { useUserStore, UserStore } from '@/store';
+import { login, getUserInfo } from '@/services';
 
 const selector = (state: UserStore) => [state.user, state.setUser];
 
 const TestComponentA: FC = () => {
   const [user, setUser] = useUserStore(selector);
 
-  useEffect(() => {
-    axios
-      .post('/login', {
-        // 如果你需要发送一些数据，可以在这里添加
+  const loginUser = async () => {
+    try {
+      await login({
         username: 'test',
         password: 'test',
-      })
-      .then(() => {
-        console.log('登录成功');
-
-        // 登录成功后获取用户信息
-        axios
-          .get('/user')
-          .then((response) => {
-            if (response.data.errorMessage) {
-              console.log('获取用户信息失败:', response.data.errorMessage);
-            } else {
-              console.log('获取用户信息成功:', response.data);
-            }
-          })
-          .catch((error) => console.error('发生错误:', error));
-      })
-      .catch(() => {
-        console.log('登录失败');
       });
-  });
+      console.log('登录成功');
+
+      // 登录成功后获取用户信息
+      const response = await getUserInfo();
+
+      if (response.code !== 200) {
+        console.log('获取用户信息失败:', response);
+      } else {
+        console.log('获取用户信息成功:', response);
+        setUser(response.data.userInfo); // 如果获取用户信息成功，就更新用户状态
+      }
+    } catch (error) {
+      console.log('登录失败，错误详情:', error);
+    }
+  };
+
+  useEffect(() => {
+    loginUser();
+  }, [setUser]); // setUser变化时重新运行该副作用函数
 
   const handleChangeUser = () => {
     setUser({ id: Math.random(), name: '用户 1', email: 'yyy@gmail.com' });

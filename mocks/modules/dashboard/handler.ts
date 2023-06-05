@@ -29,7 +29,11 @@ export const dashBoardHandler = [
     return res(
       ctx.status(200),
       ctx.json({
-        message: '欢迎访问墨迹小窝后台管理系统',
+        code: '200',
+        message: 'Success',
+        data: {
+          message: '欢迎访问 墨迹小窝 后台管理系统',
+        },
       }),
     );
   }),
