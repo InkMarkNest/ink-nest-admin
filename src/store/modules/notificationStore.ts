@@ -44,10 +44,17 @@ interface NotificationActions {
 type NotificationStore = NotificationState & NotificationActions;
 
 /**
+ * 定义初始状态
+ */
+const initialState: NotificationState = {
+  notifications: [],
+};
+
+/**
  * 消息状态仓库
  */
 const useNotificationStore = create<NotificationStore>((set) => ({
-  notifications: [],
+  ...initialState,
   addNotification: (notification) =>
     set((state) => ({
       notifications: [...state.notifications, notification],

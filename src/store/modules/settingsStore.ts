@@ -37,11 +37,18 @@ interface SettingsActions {
 type SettingsStore = SettingsState & SettingsActions;
 
 /**
+ * 定义初始状态
+ */
+const initialState: SettingsState = {
+  darkMode: false,
+  language: 'en',
+};
+
+/**
  * 系统设置状态仓库
  */
 const useSettingsStore = create<SettingsStore>((set) => ({
-  darkMode: false,
-  language: 'en',
+  ...initialState,
   toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
   setLanguage: (language) => set({ language }),
 }));

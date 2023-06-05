@@ -41,10 +41,17 @@ interface UserActions {
 type UserStore = UserState & UserActions;
 
 /**
+ * 定义初始状态
+ */
+const initialState: UserState = {
+  user: null,
+};
+
+/**
  * 用户状态仓库
  */
 const useUserStore = create<UserStore>((set) => ({
-  user: null,
+  ...initialState,
   setUser: (user) => set({ user }),
   clearUser: () => set({ user: null }),
 }));
