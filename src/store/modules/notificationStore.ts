@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 import { createSelectors } from '../createSelectors';
 
@@ -55,17 +56,19 @@ const initialState: NotificationState = {
 /**
  * 消息状态仓库
  */
-const useNotificationStoreBase = create<NotificationStore>((set) => ({
-  ...initialState,
-  addNotification: (notification) =>
-    set((state) => ({
-      notifications: [...state.notifications, notification],
-    })),
-  removeNotification: (id) =>
-    set((state) => ({
-      notifications: state.notifications.filter((notification) => notification.id !== id),
-    })),
-}));
+const useNotificationStoreBase = create(
+  immer<NotificationStore>((set) => ({
+    ...initialState,
+    addNotification: (notification) =>
+      set((state) => {
+        state.notifications.push(notification);
+      }),
+    removeNotification: (id) =>
+      set((state) => {
+        state.notifications = state.notifications.filter((notification) => notification.id !== id);
+      }),
+  })),
+);
 
 const useNotificationStore = createSelectors(useNotificationStoreBase);
 

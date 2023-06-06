@@ -1,4 +1,7 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
+import { produce } from 'immer';
+
+import { Button } from 'antd';
 
 import { cloneDeep } from 'lodash-es';
 
@@ -14,7 +17,18 @@ const person = {
 };
 
 const TestComponentA: FC = () => {
-  const [user] = useUserStore((state) => [state.user, state.setUser]);
+  const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
+
+  // 测试 immer
+  const updateUser = useCallback(() => {
+    // 使用immer函数创建新的用户状态
+    const newUser = produce(user, (draft) => {
+      // 在这里可以直接修改draft的属性
+      draft.name = 'New Name';
+      draft.email = 'newemail@example.com';
+    });
+    setUser(newUser); // 更新状态
+  }, [user, setUser]);
 
   // 测试 lodash-es
   const clonedPerson = cloneDeep(person);
@@ -32,6 +46,8 @@ const TestComponentA: FC = () => {
             </div>
           ))}
       </div>
+      {/* 添加一个按钮来触发用户状态的更新 */}
+      <Button onClick={updateUser}>更新用户状态</Button>
     </div>
   );
 };

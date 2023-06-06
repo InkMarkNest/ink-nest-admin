@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 import { createSelectors } from '../createSelectors';
 
@@ -49,11 +50,19 @@ const initialState: SettingsState = {
 /**
  * 系统设置状态仓库
  */
-const useSettingsStoreBase = create<SettingsStore>((set) => ({
-  ...initialState,
-  toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
-  setLanguage: (language) => set({ language }),
-}));
+const useSettingsStoreBase = create(
+  immer<SettingsState>((set) => ({
+    ...initialState,
+    toggleDarkMode: () =>
+      set((state) => {
+        state.darkMode = !state.darkMode;
+      }),
+    setLanguage: (language) =>
+      set((state) => {
+        state.language = language;
+      }),
+  })),
+);
 
 const useSettingsStore = createSelectors(useSettingsStoreBase);
 

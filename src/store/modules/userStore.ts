@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 import { setItem, removeItem } from '@/utils';
 
@@ -54,17 +55,23 @@ const initialState: UserState = {
 /**
  * 用户状态仓库
  */
-const useUserStoreBase = create<UserStore>((set) => ({
-  ...initialState,
-  setUser: async (user) => {
-    await setItem<User>('userInfo', user);
-    set({ user });
-  },
-  clearUser: async () => {
-    await removeItem('userInfo');
-    set({ user: null });
-  },
-}));
+const useUserStoreBase = create(
+  immer<UserStore>((set) => ({
+    ...initialState,
+    setUser: async (user) => {
+      await setItem<User>('userInfo', user);
+      set((state) => {
+        state.user = user;
+      });
+    },
+    clearUser: async () => {
+      await removeItem('userInfo');
+      set((state) => {
+        state.user = null;
+      });
+    },
+  })),
+);
 
 const useUserStore = createSelectors(useUserStoreBase);
 
