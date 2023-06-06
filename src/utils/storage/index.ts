@@ -1,22 +1,28 @@
 import localforage from 'localforage';
 
 /**
- * 创建本地存储实例
+ * 本地存储实例配置
  * @param {Object} options - 配置选项
  * @param {string} options.driver - 存储驱动，默认为 localforage.INDEXEDDB
  * @param {string} options.name - 存储名称
  * @param {number} options.version - 存储版本号
  * @param {string} options.storeName - 存储的键值对集合名称
  * @param {string} options.description - 存储描述信息
- * @returns {Object} - 本地存储实例
  */
-const storage = localforage.createInstance({
-  driver: localforage.INDEXEDDB,
-  name: 'ink-admin',
-  version: 1.0,
-  storeName: 'keyvaluepairs',
-  description: 'ink admin local state',
-});
+const localStorageConfig = {
+  driver: localforage[import.meta.env.VITE_LOCAL_DRIVER],
+  name: import.meta.env.VITE_LOCAL_NAME,
+  version: import.meta.env.VITE_LOCAL_VERSION,
+  storeName: import.meta.env.VITE_LOCAL_STORENAME,
+  description: import.meta.env.VITE_LOCAL_DESCRIPTION,
+};
+
+const storage = localforage.createInstance(localStorageConfig);
+
+const handleError = (error, message) => {
+  console.error(message, error);
+  throw error;
+};
 
 /**
  * 获取指定键的存储值
@@ -24,8 +30,13 @@ const storage = localforage.createInstance({
  * @returns {Promise<T | null>} - 存储值的 Promise 对象
  */
 export const getItem = async <T>(key) => {
-  const value = await storage.getItem<T>(key);
-  return value || null;
+  try {
+    const value = await storage.getItem<T>(key);
+    return value || null;
+  } catch (error) {
+    handleError(error, `Failed to get item with key "${key}".`);
+    return null;
+  }
 };
 
 /**
@@ -34,7 +45,11 @@ export const getItem = async <T>(key) => {
  * @returns {Promise<void>} - Promise 对象
  */
 export const setItem = async <T>(key, value) => {
-  await storage.setItem<T>(key, value);
+  try {
+    await storage.setItem<T>(key, value);
+  } catch (error) {
+    handleError(error, `Failed to set item with key "${key}".`);
+  }
 };
 
 /**
@@ -43,7 +58,11 @@ export const setItem = async <T>(key, value) => {
  * @returns {Promise<void>} - Promise 对象
  */
 export const removeItem = async (key) => {
-  await storage.removeItem(key);
+  try {
+    await storage.removeItem(key);
+  } catch (error) {
+    handleError(error, `Failed to remove item with key "${key}".`);
+  }
 };
 
 /**
@@ -52,5 +71,9 @@ export const removeItem = async (key) => {
  * @returns {Promise<void>} - Promise 对象
  */
 export const clear = async () => {
-  await storage.clear();
+  try {
+    await storage.clear();
+  } catch (error) {
+    handleError(error, `Failed to clear local storage.`);
+  }
 };
