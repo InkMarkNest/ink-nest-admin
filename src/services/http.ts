@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
 // 定义响应接口
 export interface ResponseData<T = any> {
@@ -38,9 +43,10 @@ const http = axios.create({
 
 // 请求拦截器
 http.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: InternalAxiosRequestConfig) => {
     // TODO
     const token = 'xxx';
+    config.headers = config.headers || {};
     config.headers.Authorization = `Bearer ${token}`;
 
     return config;
@@ -52,12 +58,20 @@ http.interceptors.request.use(
 
 // 响应拦截器
 http.interceptors.response.use(
-  (response: AxiosResponse<ResponseData>) => {
-    if (response.data.code !== 200) {
-      return Promise.reject(new Error(response.data || 'Error'));
+  (response: AxiosResponse<any>) => {
+    const { data } = response;
+
+    if (data.code !== 200) {
+      return Promise.reject(new Error(data.message || 'Error'));
     }
 
-    return response.data;
+    // Wrap the data in AxiosResponse
+    const responseWithData: AxiosResponse<ResponseData> = {
+      ...response,
+      data: data.data,
+    };
+
+    return responseWithData;
   },
   (error) => {
     return Promise.reject(error);

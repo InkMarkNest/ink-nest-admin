@@ -1,15 +1,8 @@
 {
+  "compilerOptions": {
+    "composite": true
+  },
   "extends": "./tsconfig.json",
-  "include": [
-    "./src",
-    "./test",
-    "./typings",
-    "./config",
-    "./build",
-    "./mocks",
-    "**.js",
-    "**.ts",
-    "./public"
-  ],
+  "include": ["./src", "./config", "./mocks", "**.js", "**.ts", "./public"],
   "exclude": ["node_modules"]
 }
