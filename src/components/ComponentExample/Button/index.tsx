@@ -9,10 +9,12 @@ import style from './index.module.scss';
  *
  * @param {ButtonProps} props - 组件 Props
  */
-export const ButtonExample: React.FC<ButtonProps> = ({ onClick, disabled, children }) => {
+const ButtonExample: React.FC<ButtonProps> = ({ onClick, disabled, children }) => {
   return (
     <button className={style.button} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );
 };
+
+export { ButtonExample };

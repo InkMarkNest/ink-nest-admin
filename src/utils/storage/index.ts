@@ -29,7 +29,7 @@ const handleError = (error, message) => {
  *
  * @returns {Promise<T | null>} - 存储值的 Promise 对象
  */
-export const getItem = async <T>(key) => {
+const getItem = async <T>(key) => {
   try {
     const value = await storage.getItem<T>(key);
     return value || null;
@@ -44,7 +44,7 @@ export const getItem = async <T>(key) => {
  *
  * @returns {Promise<void>} - Promise 对象
  */
-export const setItem = async <T>(key, value) => {
+const setItem = async <T>(key, value) => {
   try {
     await storage.setItem<T>(key, value);
   } catch (error) {
@@ -57,7 +57,7 @@ export const setItem = async <T>(key, value) => {
  *
  * @returns {Promise<void>} - Promise 对象
  */
-export const removeItem = async (key) => {
+const removeItem = async (key) => {
   try {
     await storage.removeItem(key);
   } catch (error) {
@@ -70,10 +70,12 @@ export const removeItem = async (key) => {
  *
  * @returns {Promise<void>} - Promise 对象
  */
-export const clear = async () => {
+const clear = async () => {
   try {
     await storage.clear();
   } catch (error) {
     handleError(error, `Failed to clear local storage.`);
   }
 };
+
+export { setItem, getItem, removeItem, clear };

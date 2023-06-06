@@ -58,4 +58,4 @@ const TestComponentA: FC = () => {
   );
 };
 
-export default TestComponentA;
+export { TestComponentA };

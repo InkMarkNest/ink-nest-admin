@@ -6,4 +6,4 @@ const baseThemeConfig: ThemeConfig = {
   },
 };
 
-export default baseThemeConfig;
+export { baseThemeConfig };

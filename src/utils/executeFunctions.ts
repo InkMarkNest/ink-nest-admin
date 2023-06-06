@@ -17,4 +17,4 @@ function executeFunctions(functions: VoidFunction[]): void {
   }
 }
 
-export default executeFunctions;
+export { executeFunctions };

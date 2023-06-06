@@ -15,4 +15,4 @@ function useMock(): SetupWorkerApi {
   return worker;
 }
 
-export default useMock;
+export { useMock };

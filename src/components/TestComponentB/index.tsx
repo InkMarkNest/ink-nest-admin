@@ -18,7 +18,7 @@ const person = {
   },
 };
 
-const TestComponentA: FC = () => {
+const TestComponentB: FC = () => {
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
 
   // 测试 immer
@@ -62,4 +62,4 @@ const TestComponentA: FC = () => {
   );
 };
 
-export default TestComponentA;
+export { TestComponentB };
