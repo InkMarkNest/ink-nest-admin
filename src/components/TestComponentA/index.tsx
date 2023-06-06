@@ -7,23 +7,25 @@ import { login, getUserInfo } from '@/services';
 const TestComponentA: FC = () => {
   const user = useUserStore.use.user();
   const setUser = useUserStore.use.setUser();
+  const setToken = useUserStore.use.setToken();
 
   const loginUser = async () => {
     try {
-      await login({
-        username: 'test',
-        password: 'test',
+      const loginRes = await login({
+        username: 'admin',
+        password: '123456',
       });
-      console.log('登录成功');
+
+      setToken(loginRes.data.token);
 
       // 登录成功后获取用户信息
-      const response = await getUserInfo();
+      const userInfoRes = await getUserInfo();
 
-      if (response.code !== 200) {
-        console.log('获取用户信息失败:', response);
+      if (userInfoRes.code !== 200) {
+        console.log('获取用户信息失败:', userInfoRes);
       } else {
-        console.log('获取用户信息成功:', response);
-        setUser(response.data.userInfo); // 如果获取用户信息成功，就更新用户状态
+        console.log('获取用户信息成功:', userInfoRes);
+        setUser(userInfoRes.data.userInfo); // 如果获取用户信息成功，就更新用户状态
       }
     } catch (error) {
       console.log('登录失败，错误详情:', error);

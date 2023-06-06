@@ -1,5 +1,12 @@
 import { rest } from 'msw';
 
+const mockUser = {
+  username: 'admin',
+  password: '123456',
+};
+
+const mockToken = 'ink-admin-mock-token';
+
 /**
  * 用户模块 Mock API
  */
@@ -12,17 +19,27 @@ export const userHandler = [
    * @param {Object} ctx - 响应上下文对象
    * @returns {Function} 响应函数
    */
-  rest.post('/api/login', (req, res, ctx) => {
-    // Persist user's authentication in the session
-    sessionStorage.setItem('is-authenticated', 'true');
+  rest.post('/api/login', async (req, res, ctx) => {
+    const body = await req.json();
+    const { username, password } = body as { username: string; password: string };
+
+    if (username === mockUser.username && password === mockUser.password) {
+      return res(
+        // Respond with a 200 status code
+        ctx.status(200),
+        ctx.json({
+          code: 200,
+          message: '登录成功 欢迎访问',
+          data: { token: mockToken },
+        }),
+      );
+    }
 
     return res(
-      // Respond with a 200 status code
-      ctx.status(200),
+      ctx.status(401),
       ctx.json({
-        code: 200,
-        message: '登录成功 欢迎访问',
-        data: {},
+        code: 401,
+        errorMessage: 'The user name or password is incorrect',
       }),
     );
   }),
@@ -36,11 +53,24 @@ export const userHandler = [
    * @returns {Function} 响应函数
    */
   rest.get('/api/user', (req, res, ctx) => {
-    // Check if the user is authenticated in this session
-    const isAuthenticated = sessionStorage.getItem('is-authenticated');
+    const authorization = req.headers.get('authorization');
 
-    if (!isAuthenticated) {
+    if (!authorization || !authorization.startsWith('Bearer ')) {
       // If not authenticated, respond with a 403 error
+      return res(
+        ctx.status(403),
+        ctx.json({
+          code: 403,
+          errorMessage: 'Not authorized',
+        }),
+      );
+    }
+
+    const token = authorization.split(' ')[1];
+
+    try {
+      if (token !== mockToken) throw new Error('error');
+    } catch (error) {
       return res(
         ctx.status(403),
         ctx.json({

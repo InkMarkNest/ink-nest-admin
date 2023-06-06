@@ -22,6 +22,10 @@ interface UserState {
    * 当前用户
    */
   user: User | null;
+  /**
+   * 用户 token
+   */
+  token: string | null;
 }
 
 /**
@@ -38,6 +42,15 @@ interface UserActions {
    * 清除当前用户数据
    */
   clearUser: () => void;
+  /**
+   * 设置用户 token
+   * @param {string} token - 新的 token
+   */
+  setToken: (token: string | null) => void;
+  /**
+   * 清除用户 token
+   */
+  clearToken: () => void;
 }
 
 /**
@@ -50,6 +63,7 @@ type UserStore = UserState & UserActions;
  */
 const initialState: UserState = {
   user: null,
+  token: null,
 };
 
 /**
@@ -68,6 +82,18 @@ const useUserStoreBase = create(
       await removeItem('userInfo');
       set((state) => {
         state.user = null;
+      });
+    },
+    setToken: async (token) => {
+      await setItem('inkToken', token);
+      set((state) => {
+        state.token = token;
+      });
+    },
+    clearToken: async () => {
+      await removeItem('token');
+      set((state) => {
+        state.token = null;
       });
     },
   })),

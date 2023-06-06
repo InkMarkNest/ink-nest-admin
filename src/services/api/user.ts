@@ -6,6 +6,10 @@ interface LoginParams {
   password: string;
 }
 
+interface LoginResponse {
+  token: string;
+}
+
 interface UserInfo {
   userInfo: {
     id: number;
@@ -18,7 +22,7 @@ interface UserInfo {
  * 登录接口
  */
 export const login = (params: LoginParams) => {
-  return http.post('/api/login', params);
+  return http.post<LoginResponse>('/api/login', params);
 };
 
 /**

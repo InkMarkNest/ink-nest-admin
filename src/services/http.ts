@@ -1,5 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
+import { getItem } from '@/utils';
+
 import { BusinessErrorCode, handleResponseError } from './errorHandler';
 
 /**
@@ -43,8 +45,8 @@ const http = axios.create({
 /**
  * 请求拦截器
  */
-http.interceptors.request.use((config) => {
-  const token = 'xxx';
+http.interceptors.request.use(async (config) => {
+  const token = await getItem('inkToken');
   config.headers = config.headers || {};
   config.headers.Authorization = `Bearer ${token}`;
   return config;
