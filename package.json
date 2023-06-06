@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "commit": "git cz"
+    "commit": "git cz",
+    "lintcss": "stylelint src/**/*.{css,scss} --fix --custom-syntax postcss-scss"
   },
   "dependencies": {
     "antd": "^5.5.2",
@@ -52,9 +53,16 @@
     "postcss-mixins": "^9.0.4",
     "postcss-nested": "^6.0.1",
     "postcss-nesting": "^11.2.2",
+    "postcss-scss": "^4.0.6",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "sass": "^1.62.1",
+    "stylelint": "^15.7.0",
+    "stylelint-config-css-modules": "^4.2.0",
+    "stylelint-config-recess-order": "^4.1.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-prettier": "^3.0.0",
+    "stylelint-scss": "^5.0.0",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
@@ -74,6 +82,9 @@
     "*.{js,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
+    ],
+    "*.scss": [
+      "stylelint --fix --custom-syntax postcss-scss"
     ]
   },
   "msw": {
