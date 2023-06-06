@@ -8,7 +8,10 @@ import { worker } from '../../mocks/browser';
  * @return {SetupWorkerApi} The worker instance.
  */
 function useMock(): SetupWorkerApi {
-  worker.start();
+  worker.start({
+    onUnhandledRequest: 'bypass',
+  });
+
   return worker;
 }
 
