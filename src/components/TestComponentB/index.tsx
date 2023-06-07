@@ -23,6 +23,7 @@ const TestComponentB: FC = () => {
 
   // 测试 immer
   const updateUser = useCallback(() => {
+    if (!user) return;
     // 使用immer函数创建新的用户状态
     const newUser = produce(user, (draft) => {
       // 在这里可以直接修改draft的属性

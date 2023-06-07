@@ -15,11 +15,13 @@ const TestComponentA: FC = () => {
         username: 'admin',
         password: '123456',
       });
+      console.log('loginRes', loginRes);
 
       setToken(loginRes.data.token);
 
       // 登录成功后获取用户信息
       const userInfoRes = await getUserInfo();
+      console.log('userInfoRes', userInfoRes);
 
       if (userInfoRes.code !== 200) {
         console.log('获取用户信息失败:', userInfoRes);

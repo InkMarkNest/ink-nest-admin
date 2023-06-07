@@ -1,73 +1,118 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
 import { getItem } from '@/utils';
 
-import { BusinessErrorCode, handleResponseError } from './errorHandler';
+import { BusinessErrorCode, handleResponseError, handleRequestError } from './errorHandler';
+import { CustomError, ResponseData, HttpMethod, HttpMethodWithData } from './types';
 
 /**
- * 响应数据接口定义
+ * axios 配置对象
  */
-export interface ResponseData<T = any> {
-  code: number;
-  data: T;
-  message: string;
-}
-
-/**
- * 自定义通用的 HTTP 方法接口定义
- */
-interface HttpMethods {
-  <T = any, R = ResponseData<T>>(url: string, config?: AxiosRequestConfig): Promise<R>;
-  <T = any, R = ResponseData<T>>(url: string, data?: any, config?: AxiosRequestConfig): Promise<R>;
-}
-
-/**
- * 自定义 AxiosInstance 接口定义，增强TS类型提示
- */
-interface CustomAxiosInstance extends AxiosInstance {
-  get: HttpMethods;
-  delete: HttpMethods;
-  head: HttpMethods;
-  options: HttpMethods;
-  post: HttpMethods;
-  put: HttpMethods;
-  patch: HttpMethods;
-}
+const axiosConfigs = {
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  timeout: 10000,
+};
 
 /**
  * 创建axios实例，并转换为新的类型
  */
-const http = axios.create({
-  baseURL: import.meta.env.BASE_URL,
-  timeout: 10000,
-}) as unknown as CustomAxiosInstance;
+const httpService = axios.create(axiosConfigs);
 
 /**
  * 请求拦截器
  */
-http.interceptors.request.use(async (config) => {
-  const token = await getItem('inkToken');
+httpService.interceptors.request.use(async (config) => {
+  const token = await getItem<string | null>('inkToken');
   config.headers = config.headers || {};
-  config.headers.Authorization = `Bearer ${token}`;
+
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
-}, handleResponseError);
+}, handleRequestError);
 
 /**
  * 响应拦截器
  */
-http.interceptors.response.use((response) => {
-  const { data }: { data: ResponseData } = response;
+httpService.interceptors.response.use((response) => {
+  const { data }: { data: ResponseData<any> } = response;
 
   // 判断 data.code 是否在业务错误码中
   const isError = Object.values(BusinessErrorCode).includes(data.code);
   if (isError) {
     // 如果是业务错误，创建一个新的 Error 对象，并添加业务错误码和错误信息
-    const error = new Error(data.message || 'Error');
+    const error: CustomError = new Error(data.message || 'Error');
     error.code = data.code;
-    return handleResponseError(error);
+    throw error;
   }
 
-  return data;
+  return response;
 }, handleResponseError);
 
-export { http };
+/**
+ * Get 方法
+ * @param url 请求的 URL
+ * @param params 请求的参数
+ * @returns 返回Promise，值为ResponseData中的data对象
+ */
+const Get: HttpMethod = async <T = any>(url: string, params?: object): Promise<ResponseData<T>> => {
+  const response = await httpService.get(url, { params });
+  return response.data;
+};
+
+/**
+ * Post 方法
+ * @param url 请求的 URL
+ * @param data 请求的数据
+ * @returns 返回Promise，值为ResponseData中的data对象
+ */
+const Post: HttpMethodWithData = async <T = any>(
+  url: string,
+  data?: any,
+): Promise<ResponseData<T>> => {
+  const response = await httpService.post(url, data);
+  return response.data;
+};
+
+/**
+ * Put 方法
+ * @param url 请求的 URL
+ * @param data 请求的数据
+ * @returns 返回Promise，值为ResponseData中的data对象
+ */
+const Put: HttpMethodWithData = async <T = any>(
+  url: string,
+  data?: any,
+): Promise<ResponseData<T>> => {
+  const response = await httpService.put(url, data);
+  return response.data;
+};
+
+/**
+ * Delete 方法
+ * @param url 请求的 URL
+ * @param params 请求的参数
+ * @returns 返回Promise，值为ResponseData中的data对象
+ */
+const Delete: HttpMethod = async <T = any>(
+  url: string,
+  params?: object,
+): Promise<ResponseData<T>> => {
+  const response = await httpService.delete(url, { params });
+  return response.data;
+};
+
+/**
+ * Patch 方法
+ * @param url 请求的 URL
+ * @param data 请求的数据
+ * @returns 返回Promise，值为ResponseData中的data对象
+ */
+const Patch: HttpMethodWithData = async <T = any>(
+  url: string,
+  data?: any,
+): Promise<ResponseData<T>> => {
+  const response = await httpService.patch(url, data);
+  return response.data;
+};
+
+// 方法导出
+export { Get, Post, Put, Delete, Patch };

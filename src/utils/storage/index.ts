@@ -1,5 +1,11 @@
 import localforage from 'localforage';
 
+const driverMapping = {
+  INDEXEDDB: localforage.INDEXEDDB,
+  WEBSQL: localforage.WEBSQL,
+  LOCALSTORAGE: localforage.LOCALSTORAGE,
+};
+
 /**
  * 本地存储实例配置
  * @param {Object} options - 配置选项
@@ -10,7 +16,7 @@ import localforage from 'localforage';
  * @param {string} options.description - 存储描述信息
  */
 const localStorageConfig = {
-  driver: localforage[import.meta.env.VITE_LOCAL_DRIVER],
+  driver: driverMapping[import.meta.env.VITE_LOCAL_DRIVER as unknown as keyof typeof driverMapping],
   name: import.meta.env.VITE_LOCAL_NAME,
   version: import.meta.env.VITE_LOCAL_VERSION,
   storeName: import.meta.env.VITE_LOCAL_STORENAME,
@@ -19,7 +25,7 @@ const localStorageConfig = {
 
 const storage = localforage.createInstance(localStorageConfig);
 
-const handleError = (error, message) => {
+const handleError = (error: any, message: string) => {
   console.error(message, error);
   throw error;
 };
@@ -29,7 +35,7 @@ const handleError = (error, message) => {
  *
  * @returns {Promise<T | null>} - 存储值的 Promise 对象
  */
-const getItem = async <T>(key) => {
+const getItem = async <T>(key: string): Promise<T | null> => {
   try {
     const value = await storage.getItem<T>(key);
     return value || null;
@@ -44,7 +50,7 @@ const getItem = async <T>(key) => {
  *
  * @returns {Promise<void>} - Promise 对象
  */
-const setItem = async <T>(key, value) => {
+const setItem = async <T>(key: string, value: T): Promise<void> => {
   try {
     await storage.setItem<T>(key, value);
   } catch (error) {
@@ -57,7 +63,7 @@ const setItem = async <T>(key, value) => {
  *
  * @returns {Promise<void>} - Promise 对象
  */
-const removeItem = async (key) => {
+const removeItem = async (key: string): Promise<void> => {
   try {
     await storage.removeItem(key);
   } catch (error) {
@@ -70,7 +76,7 @@ const removeItem = async (key) => {
  *
  * @returns {Promise<void>} - Promise 对象
  */
-const clear = async () => {
+const clear = async (): Promise<void> => {
   try {
     await storage.clear();
   } catch (error) {

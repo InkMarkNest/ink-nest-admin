@@ -9,7 +9,7 @@ import { createSelectors } from '../createSelectors';
  * 用户数据类型定义
  */
 type User = {
-  id: string;
+  id: number;
   name: string;
   email: string;
 };
@@ -73,7 +73,7 @@ const useUserStoreBase = create(
   immer<UserStore>((set) => ({
     ...initialState,
     setUser: async (user) => {
-      await setItem<User>('userInfo', user);
+      await setItem<User | null>('userInfo', user);
       set((state) => {
         state.user = user;
       });
@@ -101,4 +101,5 @@ const useUserStoreBase = create(
 
 const useUserStore = createSelectors(useUserStoreBase);
 
-export { useUserStore, UserStore };
+export { useUserStore };
+export type { UserStore };

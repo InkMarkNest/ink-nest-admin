@@ -72,7 +72,7 @@ module.exports = {
         devDependencies: [
           '**/*.test.{ts,js}',
           '**/*.spec.{ts,js}',
-          'build/**/*.{ts,js}',
+          'config/**/*.{ts,js}',
           'mocks/**/*.{ts,js}',
           '**.{ts,js}',
         ],
@@ -130,6 +130,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-member-access': 0,
     '@typescript-eslint/no-unsafe-call': 0,
     '@typescript-eslint/no-unsafe-argument': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
 
     /* ********************************** React and Hooks ********************************** */
     'react/jsx-uses-react': 1,

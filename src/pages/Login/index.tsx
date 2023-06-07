@@ -2,12 +2,12 @@ import { FC } from 'react';
 
 import style from './index.module.scss';
 
-const HomePage: FC = () => {
+const Login: FC = () => {
   return (
     <>
-      <div className={style.home}>HomePage</div>
+      <div className={style.login}>Login</div>
     </>
   );
 };
 
-export { HomePage };
+export { Login };

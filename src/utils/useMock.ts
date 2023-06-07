@@ -1,18 +1,13 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { SetupWorkerApi } from 'msw';
-
+// @ts-nocheck
 import { worker } from '../../mocks/browser';
 
 /**
- * Initializes and starts the msw mock server.
- * @return {SetupWorkerApi} The worker instance.
+ * Initializes and starts the msw mock server
  */
-function useMock(): SetupWorkerApi {
+function useMock() {
   worker.start({
     onUnhandledRequest: 'bypass',
   });
-
-  return worker;
 }
 
 export { useMock };

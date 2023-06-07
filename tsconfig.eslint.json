@@ -3,6 +3,6 @@
     "composite": true
   },
   "extends": "./tsconfig.json",
-  "include": ["./src", "./config", "./mocks", "**.js", "**.ts", "./public"],
+  "include": ["./src", "./config", "./mocks", "./public", "**.js", "**.ts"],
   "exclude": ["node_modules"]
 }

@@ -51,7 +51,7 @@ const initialState: SettingsState = {
  * 系统设置状态仓库
  */
 const useSettingsStoreBase = create(
-  immer<SettingsState>((set) => ({
+  immer<SettingsStore>((set) => ({
     ...initialState,
     toggleDarkMode: () =>
       set((state) => {
@@ -66,4 +66,5 @@ const useSettingsStoreBase = create(
 
 const useSettingsStore = createSelectors(useSettingsStoreBase);
 
-export { useSettingsStore, SettingsStore };
+export { useSettingsStore };
+export type { SettingsStore };

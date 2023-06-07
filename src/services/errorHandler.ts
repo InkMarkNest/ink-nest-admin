@@ -42,7 +42,7 @@ export const createHttpError = (
   businessErrorCode?: BusinessErrorCode,
   message?: string,
   originalError?: AxiosError,
-): IHttpError => {
+): HttpError => {
   return { httpErrorCode, businessErrorCode, message, originalError };
 };
 
@@ -106,26 +106,12 @@ const handleBusinessError = (code: BusinessErrorCode, error: AxiosError): Promis
 };
 
 /**
- * 处理响应错误
+ * 处理请求错误
  *
  * @param {AxiosError} error 原始错误对象
  * @returns {Promise<void>} 返回一个Promise错误对象
  */
-export const handleResponseError = (error: AxiosError): Promise<void> => {
-  if (error.response) {
-    const status = error.response.status as HttpErrorCode;
-
-    // 处理HTTP错误
-    if (Object.values(HttpErrorCode).includes(status)) {
-      return handleHTTPError(status, error);
-    }
-  }
-
-  // 处理业务错误
-  if (error.code && Object.values(BusinessErrorCode).includes(error.code)) {
-    return handleBusinessError(error.code, error);
-  }
-
+const handleRequestError = (error: AxiosError): Promise<void> => {
   if (error.request) {
     return Promise.reject(
       createHttpError(
@@ -145,3 +131,33 @@ export const handleResponseError = (error: AxiosError): Promise<void> => {
     ),
   );
 };
+
+/**
+ * 处理响应错误
+ *
+ * @param {AxiosError} error 原始错误对象
+ * @returns {Promise<void>} 返回一个Promise错误对象
+ */
+const handleResponseError = (error: AxiosError): Promise<void> => {
+  if (error.response) {
+    const status = error.response.status as HttpErrorCode;
+
+    // 处理HTTP错误
+    if (Object.values(HttpErrorCode).includes(status)) {
+      return handleHTTPError(status, error);
+    }
+
+    // 处理业务错误
+    const businessErrorCodeValues = Object.values(BusinessErrorCode);
+    if (error.code && businessErrorCodeValues.includes(Number(error.code))) {
+      return handleBusinessError(Number(error.code) as BusinessErrorCode, error);
+    }
+  }
+
+  // 如果上面都没处理，则是未知错误
+  return Promise.reject(
+    createHttpError(HttpErrorCode.SERVER_ERROR, undefined, 'An unknown error occurred', error),
+  );
+};
+
+export { handleRequestError, handleResponseError };

@@ -73,3 +73,4 @@ const useNotificationStoreBase = create(
 const useNotificationStore = createSelectors(useNotificationStoreBase);
 
 export { useNotificationStore };
+export type { NotificationState };
