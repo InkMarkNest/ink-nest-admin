@@ -1,19 +1,23 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 
-import { HomePage } from '@/pages/Home';
 import { NotFound } from '@/pages/Exceptions';
 import { Login } from '@/pages/Login';
 
-import { ProtectedRoute } from './useProtectedRoute';
+import { MainLayout } from '@/Layout';
 
-const router = createBrowserRouter([
+import { dashboardRoutes } from './modules';
+
+const routes: RouteObject[] = [
   {
     path: '/',
-    element: (
-      <ProtectedRoute requiredRole="admin">
-        <HomePage />
-      </ProtectedRoute>
-    ),
+    element: <MainLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Navigate to="/dashboard" />,
+      },
+      ...dashboardRoutes,
+    ],
   },
   {
     path: '/login',
@@ -23,6 +27,8 @@ const router = createBrowserRouter([
     path: '*',
     element: <NotFound />,
   },
-]);
+];
+
+const router = createBrowserRouter(routes);
 
 export { router };

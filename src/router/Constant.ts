@@ -9,8 +9,13 @@ enum DashboardPath {
 }
 
 enum UserPath {
-  Info = '/user/info',
+  Manager = '/user/manager',
   Setting = '/user/setting',
+  Auth = '/user/auth',
 }
 
-export { CommonPath, DashboardPath, UserPath };
+enum ArticlePath {
+  Manager = '/article/manager',
+}
+
+export { CommonPath, DashboardPath, UserPath, ArticlePath };

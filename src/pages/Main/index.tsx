@@ -8,9 +8,11 @@ import { useUserStore } from '@/store';
 
 import { CommonPath } from '@/router/Constant';
 
+import { MainLayout } from '@/Layout';
+
 import style from './index.module.scss';
 
-const HomePage: FC = () => {
+const MainPage: FC = () => {
   const navigate = useNavigate();
 
   const user = useUserStore.use.user();
@@ -28,7 +30,7 @@ const HomePage: FC = () => {
 
   return (
     <>
-      <div className={style.home}>HomePage</div>
+      <div className={style.home}>MainPage</div>
       <div>
         {user && (
           <>
@@ -40,8 +42,9 @@ const HomePage: FC = () => {
       </div>
       <Button onClick={handleGoOtherPage}>随便去一个不存在的页面</Button>
       <Button onClick={handleLogout}>退出登录</Button>
+      <MainLayout />
     </>
   );
 };
 
-export { HomePage };
+export { MainPage };
