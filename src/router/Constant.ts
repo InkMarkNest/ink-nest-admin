@@ -1,5 +1,5 @@
 enum CommonPath {
-  Home = '/',
+  MainLayout = '/',
   Login = '/login',
 }
 

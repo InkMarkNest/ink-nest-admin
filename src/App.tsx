@@ -1,14 +1,9 @@
-import { TestComponentA, TestComponentB } from '@/components';
+import { RouterProvider } from 'react-router-dom';
+
+import { router } from '@/router';
 
 const App = () => {
-  return (
-    <>
-      <h1 className="tw-text-emerald-400">Vite + React</h1>
-
-      <TestComponentA />
-      <TestComponentB />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export { App };

@@ -15,6 +15,7 @@ interface UserInfo {
     id: number;
     name: string;
     email: string;
+    roles: string[];
   };
 }
 
@@ -29,5 +30,5 @@ export const login = (params: LoginParams) => {
  * 获取用户信息接口
  */
 export const getUserInfo = () => {
-  return Get<UserInfo>('/api/user');
+  return Get<UserInfo>('/api/user/info');
 };

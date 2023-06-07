@@ -4,13 +4,19 @@ import { HomePage } from '@/pages/Home';
 import { NotFound } from '@/pages/Exceptions';
 import { Login } from '@/pages/Login';
 
+import { ProtectedRoute } from './useProtectedRoute';
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: (
+      <ProtectedRoute requiredRole="admin">
+        <HomePage />
+      </ProtectedRoute>
+    ),
   },
   {
-    path: '/Login',
+    path: '/login',
     element: <Login />,
   },
   {

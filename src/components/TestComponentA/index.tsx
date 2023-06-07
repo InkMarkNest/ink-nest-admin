@@ -39,19 +39,20 @@ const TestComponentA: FC = () => {
   }, [setUser]); // setUser变化时重新运行该副作用函数
 
   const handleChangeUser = () => {
-    setUser({ id: Math.random(), name: '用户 1', email: 'yyy@gmail.com' });
+    setUser({ id: Math.random(), name: '用户 1', email: 'yyy@gmail.com', roles: [] });
   };
 
   return (
     <div>
       测试组件A
       <div>
-        {user &&
-          Object.entries(user).map((info) => (
-            <div key={info[1]}>
-              {info[0]}: {info[1]}
-            </div>
-          ))}
+        {user && (
+          <>
+            <div>{user.id}</div>
+            <div>{user.name}</div>
+            <div>{user.email}</div>
+          </>
+        )}
       </div>
       <Button type="primary" onClick={handleChangeUser}>
         更新zustand状态

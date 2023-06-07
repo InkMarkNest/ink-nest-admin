@@ -52,7 +52,7 @@ export const userHandler = [
    * @param {Object} ctx - 响应上下文对象
    * @returns {Function} 响应函数
    */
-  rest.get('/api/user', (req, res, ctx) => {
+  rest.get('/api/user/info', (req, res, ctx) => {
     const authorization = req.headers.get('authorization');
 
     if (!authorization || !authorization.startsWith('Bearer ')) {
@@ -86,7 +86,9 @@ export const userHandler = [
       ctx.json({
         code: 200,
         message: 'Success',
-        data: { userInfo: { id: 1, name: 'xidongdong', email: 'youzegehq@gmail.com' } },
+        data: {
+          userInfo: { id: 1, name: 'xidongdong', email: 'youzegehq@gmail.com', roles: ['admin'] },
+        },
       }),
     );
   }),
