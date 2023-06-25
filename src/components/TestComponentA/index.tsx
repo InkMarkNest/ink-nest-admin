@@ -39,7 +39,13 @@ const TestComponentA: FC = () => {
   }, [setUser]); // setUser变化时重新运行该副作用函数
 
   const handleChangeUser = () => {
-    setUser({ id: Math.random(), name: '用户 1', email: 'yyy@gmail.com', roles: [] });
+    setUser({
+      id: Math.random(),
+      name: '用户 1',
+      email: 'yyy@gmail.com',
+      roles: [],
+      permissions: [],
+    });
   };
 
   return (

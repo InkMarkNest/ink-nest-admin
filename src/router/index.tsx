@@ -1,34 +1,7 @@
-import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
-import { NotFound } from '@/pages/Exceptions';
-import { Login } from '@/pages/Login';
+import { routesConfig } from './routesConfig';
 
-import { MainLayout } from '@/Layout';
-
-import { dashboardRoutes } from './modules';
-
-const routes: RouteObject[] = [
-  {
-    path: '/',
-    element: <MainLayout />,
-    children: [
-      {
-        path: '/',
-        element: <Navigate to="/dashboard" />,
-      },
-      ...dashboardRoutes,
-    ],
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-];
-
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routesConfig);
 
 export { router };

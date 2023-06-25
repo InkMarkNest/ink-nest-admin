@@ -2,8 +2,15 @@ import axios from 'axios';
 
 import { getItem } from '@/utils';
 
-import { BusinessErrorCode, handleResponseError, handleRequestError } from './errorHandler';
-import { CustomError, ResponseData, HttpMethod, HttpMethodWithData } from './types';
+import {
+  BusinessErrorCode,
+  CustomError,
+  HttpMethod,
+  HttpMethodWithData,
+  ResponseData,
+} from '@/types/http';
+
+import { handleResponseError, handleRequestError } from './errorHandler';
 
 /**
  * axios 配置对象

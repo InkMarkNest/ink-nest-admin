@@ -1,34 +1,6 @@
 import { AxiosError } from 'axios';
 
-/**
- * HTTP错误代码
- */
-export enum HttpErrorCode {
-  UNAUTHORIZED = 401,
-  FORBIDDEN = 403,
-  NOT_FOUND = 404,
-  SERVER_ERROR = 500,
-}
-
-/**
- * 业务错误码
- */
-export enum BusinessErrorCode {
-  GENERAL_ERROR = 1000,
-  DATABASE_ERROR = 1001,
-  FILE_ERROR = 1002,
-  VALIDATION_ERROR = 1003,
-}
-
-/**
- * 自定义HTTP错误接口
- */
-export interface HttpError {
-  httpErrorCode?: HttpErrorCode;
-  businessErrorCode?: BusinessErrorCode;
-  message?: string;
-  originalError?: AxiosError;
-}
+import { BusinessErrorCode, HttpError, HttpErrorCode } from '@/types/http';
 
 /**
  * 创建HTTP错误的工厂方法

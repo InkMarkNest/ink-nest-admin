@@ -6,7 +6,7 @@ import { Button } from 'antd';
 
 import { useUserStore } from '@/store';
 
-import { CommonPath } from '@/router/Constant';
+import { CommonPath, DashboardPath } from '@/router/Constant';
 
 import style from './index.module.scss';
 
@@ -23,7 +23,7 @@ const Workplace: FC = () => {
   };
 
   const handleGoOtherPage = () => {
-    navigate('/xx');
+    navigate(DashboardPath.Monitor);
   };
 
   return (
@@ -38,7 +38,7 @@ const Workplace: FC = () => {
           </>
         )}
       </div>
-      <Button onClick={handleGoOtherPage}>随便去一个不存在的页面</Button>
+      <Button onClick={handleGoOtherPage}>去 Monitor</Button>
       <Button onClick={handleLogout}>退出登录</Button>
     </>
   );

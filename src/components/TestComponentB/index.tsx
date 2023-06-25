@@ -42,12 +42,13 @@ const TestComponentB: FC = () => {
     <div>
       测试组件 B
       <div>
-        {user &&
-          Object.entries(user).map((info) => (
-            <div key={info[1]}>
-              {info[0]}: {info[1]}
-            </div>
-          ))}
+        {user && (
+          <div>
+            <div>ID: {user.id}</div>
+            <div>姓名: {user.name}</div>
+            <div>邮箱: {user.email}</div>
+          </div>
+        )}
       </div>
       {/* 添加一个按钮来触发用户状态的更新 */}
       <Button onClick={updateUser}>更新用户状态</Button>

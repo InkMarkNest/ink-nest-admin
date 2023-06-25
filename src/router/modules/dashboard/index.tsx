@@ -1,12 +1,14 @@
-import { Navigate, RouteObject } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { Monitor, Workplace } from '@/pages/Dashboard';
 
 import { ContentLayout } from '@/Layout/ContentLayout';
 
-import { ProtectedRoute } from '../../useProtectedRoute';
+import { ExtendedRouteObject } from '@/types/route';
 
-const dashboardRoutes: RouteObject[] = [
+import { AuthGuard } from '@/permission/AuthGuard';
+
+const dashboardRoutes: ExtendedRouteObject[] = [
   {
     path: 'dashboard',
     element: <ContentLayout />,
@@ -17,19 +19,11 @@ const dashboardRoutes: RouteObject[] = [
       },
       {
         path: 'workplace',
-        element: (
-          <ProtectedRoute requiredRole="admin">
-            <Workplace />
-          </ProtectedRoute>
-        ),
+        element: <AuthGuard element={<Workplace />} moduleId="dashboard" routeId="workplace" />,
       },
       {
         path: 'monitor',
-        element: (
-          <ProtectedRoute requiredRole="admin">
-            <Monitor />
-          </ProtectedRoute>
-        ),
+        element: <AuthGuard element={<Monitor />} moduleId="dashboard" routeId="monitor" />,
       },
     ],
   },

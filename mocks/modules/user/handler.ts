@@ -87,7 +87,30 @@ export const userHandler = [
         code: 200,
         message: 'Success',
         data: {
-          userInfo: { id: 1, name: 'xidongdong', email: 'youzegehq@gmail.com', roles: ['admin'] },
+          userInfo: {
+            id: 1,
+            name: 'xidongdong',
+            email: 'youzegehq@gmail.com',
+            roles: ['admin'],
+            permissions: [
+              {
+                moduleId: 'dashboard',
+                description: '仪表盘模块',
+                routes: [
+                  {
+                    id: 'workplace',
+                    description: '工作台',
+                    granted: true,
+                  },
+                  {
+                    id: 'monitor',
+                    description: '监控页',
+                    granted: false,
+                  },
+                ],
+              },
+            ],
+          },
         },
       }),
     );

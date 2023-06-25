@@ -1,6 +1,7 @@
 enum CommonPath {
   MainLayout = '/',
   Login = '/login',
+  NotAuthorized = '/not-authorized',
 }
 
 enum DashboardPath {
