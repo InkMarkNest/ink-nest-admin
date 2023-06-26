@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import react from '@vitejs/plugin-react-swc';
 
 const baseConfig = {
+  base: './',
   plugins: [react()],
   resolve: {
     alias: {

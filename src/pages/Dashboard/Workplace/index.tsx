@@ -8,8 +8,6 @@ import { useUserStore } from '@/store';
 
 import { CommonPath, DashboardPath, StudyPath } from '@/router/Constant';
 
-import style from './index.module.scss';
-
 const Workplace: FC = () => {
   const navigate = useNavigate();
 
@@ -32,7 +30,7 @@ const Workplace: FC = () => {
 
   return (
     <>
-      <div className={style.workplace}>工作台</div>
+      <div className="">工作台</div>
       <div>
         {user && (
           <>

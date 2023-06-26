@@ -10,8 +10,6 @@ import { CommonPath } from '@/router/Constant';
 
 import { MainLayout } from '@/Layout';
 
-import style from './index.module.scss';
-
 const MainPage: FC = () => {
   const navigate = useNavigate();
 
@@ -30,7 +28,7 @@ const MainPage: FC = () => {
 
   return (
     <>
-      <div className={style.home}>MainPage</div>
+      <div className="">MainPage</div>
       <div>
         {user && (
           <>
