@@ -8,8 +8,6 @@ import { useUserStore } from '@/store';
 
 import { CommonPath } from '@/router/Constant';
 
-import style from './index.module.scss';
-
 const Monitor: FC = () => {
   const navigate = useNavigate();
 
@@ -28,7 +26,7 @@ const Monitor: FC = () => {
 
   return (
     <>
-      <div className={style.monitor}>监控</div>
+      <div className="">监控</div>
       <div>
         {user && (
           <>
