@@ -6,7 +6,7 @@ import { Button } from 'antd';
 
 import { useUserStore } from '@/store';
 
-import { CommonPath, DashboardPath } from '@/router/Constant';
+import { CommonPath, DashboardPath, TextPath } from '@/router/Constant';
 
 import style from './index.module.scss';
 
@@ -26,6 +26,10 @@ const Workplace: FC = () => {
     navigate(DashboardPath.Monitor);
   };
 
+  const handleGoTextPage = () => {
+    navigate(TextPath.Game);
+  };
+
   return (
     <>
       <div className={style.workplace}>工作台</div>
@@ -39,6 +43,7 @@ const Workplace: FC = () => {
         )}
       </div>
       <Button onClick={handleGoOtherPage}>去 Monitor</Button>
+      <Button onClick={handleGoTextPage}>去 Text</Button>
       <Button onClick={handleLogout}>退出登录</Button>
     </>
   );

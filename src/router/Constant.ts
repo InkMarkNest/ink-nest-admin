@@ -19,4 +19,8 @@ enum ArticlePath {
   Manager = '/article/manager',
 }
 
-export { CommonPath, DashboardPath, UserPath, ArticlePath };
+enum TextPath {
+  Game = '/text/game',
+}
+
+export { CommonPath, DashboardPath, UserPath, ArticlePath, TextPath };

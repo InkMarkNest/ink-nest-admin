@@ -9,7 +9,7 @@ import { AuthGuard } from '@/permission/AuthGuard';
 
 import { ExtendedRouteObject } from '@/types/route';
 
-import { dashboardRoutes } from './modules';
+import { dashboardRoutes, textRoutes } from './modules';
 
 const routesConfig: ExtendedRouteObject[] = [
   {
@@ -35,6 +35,7 @@ const routesConfig: ExtendedRouteObject[] = [
     path: '*',
     element: <NotFound />,
   },
+  ...textRoutes,
 ];
 
 export { routesConfig };
