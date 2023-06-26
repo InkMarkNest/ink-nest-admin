@@ -4,16 +4,16 @@ import { ContentLayout } from '@/Layout/ContentLayout';
 
 import { ExtendedRouteObject } from '@/types/route';
 
-import { Game } from '@/pages/Text';
+import { Game } from '@/pages/Study';
 
-const textRoutes: ExtendedRouteObject[] = [
+const studyRoutes: ExtendedRouteObject[] = [
   {
-    path: 'text',
+    path: 'study',
     element: <ContentLayout />,
     children: [
       {
         index: true,
-        element: <Navigate to="/text/game" />,
+        element: <Navigate to="/study/game" />,
       },
       {
         path: 'game',
@@ -23,4 +23,4 @@ const textRoutes: ExtendedRouteObject[] = [
   },
 ];
 
-export { textRoutes };
+export { studyRoutes };

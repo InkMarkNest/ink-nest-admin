@@ -6,7 +6,7 @@ import { Button } from 'antd';
 
 import { useUserStore } from '@/store';
 
-import { CommonPath, DashboardPath, TextPath } from '@/router/Constant';
+import { CommonPath, DashboardPath, StudyPath } from '@/router/Constant';
 
 import style from './index.module.scss';
 
@@ -27,7 +27,7 @@ const Workplace: FC = () => {
   };
 
   const handleGoTextPage = () => {
-    navigate(TextPath.Game);
+    navigate(StudyPath.Game);
   };
 
   return (
