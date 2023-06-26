@@ -118,7 +118,7 @@ const Login: FC = () => {
   return (
     <div className="tw-container tw-flex tw-h-screen tw-items-center tw-justify-center">
       <Form
-        className=" tw-h-56 tw-w-60"
+        className="tw-h-56 tw-w-60"
         name="ink-login"
         form={form}
         initialValues={{ remember: true }}
@@ -147,7 +147,7 @@ const Login: FC = () => {
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit" className=" tw-mr-6">
+          <Button type="primary" htmlType="submit" className="tw-mr-6">
             登 录
           </Button>
           <a className="" href="">
