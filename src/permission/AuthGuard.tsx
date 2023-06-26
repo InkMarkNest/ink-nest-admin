@@ -10,14 +10,19 @@ import { hasRoutePermission } from './permissionChecker';
 
 const AuthGuard: FC<AuthGuardComponent> = ({ element, moduleId, routeId }) => {
   const user = useUserStore.use.user();
+  const rememberMe = useUserStore.use.rememberMe();
 
   const location = useLocation();
 
   // 检查用户是否登录
-  const isLoggedIn = !!user;
+  let isLoggedIn = !!user;
 
   // 用户正在访问登录页面
   const isVisitingLogin = location.pathname === CommonPath.Login;
+
+  if (rememberMe) {
+    isLoggedIn = true;
+  }
 
   // 没有登录，则引导至登录页面
   if (!isLoggedIn && !isVisitingLogin) {
@@ -26,7 +31,7 @@ const AuthGuard: FC<AuthGuardComponent> = ({ element, moduleId, routeId }) => {
 
   // 如果用户已登录但没有权限，引导至无权限页面
   // 注意：如果用户正在访问登录页面，我们不检查权限
-  if (isLoggedIn && !isVisitingLogin && !hasRoutePermission(moduleId, routeId, user.permissions)) {
+  if (isLoggedIn && !isVisitingLogin && !hasRoutePermission(moduleId, routeId, user?.permissions)) {
     return <Navigate to={CommonPath.NotAuthorized} state={{ from: location }} />;
   }
 

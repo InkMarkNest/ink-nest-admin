@@ -33,6 +33,10 @@ export interface UserState {
    * 加载完成
    */
   isLoaded: boolean;
+  /**
+   * 记住用户
+   */
+  rememberMe: boolean;
 }
 
 /**
@@ -72,6 +76,11 @@ export interface UserActions {
    * 初始化加载
    */
   init: () => Promise<void>;
+  /**
+   * 设置记住我
+   * @param {boolean} rememberMe - 是否记住用户
+   */
+  setRememberMe: (rememberMe: boolean) => Promise<void>;
 }
 
 /**

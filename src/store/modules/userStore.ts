@@ -15,6 +15,7 @@ const initialState: UserState = (() => {
     user: null,
     token: null,
     isLoaded: true,
+    rememberMe: false,
   };
 
   return state;
@@ -60,9 +61,13 @@ const useUserStoreBase = create(
       });
     },
     logout: async () => {
-      const { clearUser, clearToken } = get();
-      await clearUser();
-      await clearToken();
+      const { clearUser, clearToken, rememberMe } = get();
+
+      if (!rememberMe) {
+        // 如果用户没有选择记住我，那么在退出登录时清除本地存储
+        await clearUser();
+        await clearToken();
+      }
 
       set((state) => {
         state.isLoaded = false;
@@ -75,12 +80,20 @@ const useUserStoreBase = create(
     init: async () => {
       const user = await getItem<User | null>('userInfo');
       const token = await getItem<string | null>('inkToken');
+      const rememberMe = await getItem<boolean>('inkRememberMe');
+
       set((state) => {
         state.user = user;
         state.token = token;
-        if (user && token) {
-          state.isLoaded = false;
-        }
+        state.rememberMe = rememberMe || false;
+        state.isLoaded = false;
+      });
+    },
+    setRememberMe: async (rememberMe) => {
+      await setItem('inkRememberMe', rememberMe);
+
+      set((state) => {
+        state.rememberMe = rememberMe;
       });
     },
   })),

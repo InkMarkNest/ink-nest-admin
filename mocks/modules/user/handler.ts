@@ -2,7 +2,7 @@ import { rest } from 'msw';
 
 const mockUser = {
   username: 'admin',
-  password: '123456',
+  password: 'Ink123456@',
 };
 
 const mockToken = 'ink-admin-mock-token';
