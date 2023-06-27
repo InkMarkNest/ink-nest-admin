@@ -61,13 +61,10 @@ const useUserStoreBase = create(
       });
     },
     logout: async () => {
-      const { clearUser, clearToken, rememberMe } = get();
+      const { clearUser, clearToken } = get();
 
-      if (!rememberMe) {
-        // 如果用户没有选择记住我，那么在退出登录时清除本地存储
-        await clearUser();
-        await clearToken();
-      }
+      await clearUser();
+      await clearToken();
 
       set((state) => {
         state.isLoaded = false;

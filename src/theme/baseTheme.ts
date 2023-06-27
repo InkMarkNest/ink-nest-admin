@@ -1,6 +1,7 @@
-import { ThemeConfig } from 'antd';
+import { ThemeConfig, theme } from 'antd';
 
 const baseThemeConfig: ThemeConfig = {
+  algorithm: theme.darkAlgorithm,
   token: {
     colorPrimary: '#739e82',
     colorSuccess: '#31d843',

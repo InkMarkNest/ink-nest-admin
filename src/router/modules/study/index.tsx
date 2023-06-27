@@ -10,13 +10,20 @@ const studyRoutes: ExtendedRouteObject[] = [
   {
     path: 'study',
     element: <ContentLayout />,
+    props: {
+      isMenu: true,
+    },
     children: [
       {
         index: true,
+        path: '',
         element: <Navigate to="/study/game" />,
       },
       {
         path: 'game',
+        props: {
+          isMenu: true,
+        },
         element: <Game />,
       },
     ],

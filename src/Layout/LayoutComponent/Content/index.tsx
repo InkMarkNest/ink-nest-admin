@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 const { useToken } = theme;
 
-const ContentLayout: FC = () => {
+const Content: FC = () => {
   const { token } = useToken();
 
   return (
@@ -22,4 +22,4 @@ const ContentLayout: FC = () => {
   );
 };
 
-export { ContentLayout };
+export { Content };

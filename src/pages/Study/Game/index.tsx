@@ -80,7 +80,7 @@ const Game: FC = () => {
   return (
     <>
       {' '}
-      {status}
+      status:{status}
       <Button onClick={handlerReset} className="tw-mx-4">
         重置
       </Button>

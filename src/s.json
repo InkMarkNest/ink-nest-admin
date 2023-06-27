@@ -1,0 +1,34 @@
+[
+  {
+    "key": "0-1",
+    "icon": null,
+    "children": [
+      {
+        "key": "0-1-1",
+        "icon": null,
+        "children": null,
+        "label": "workplace"
+      },
+      {
+        "key": "0-1-2",
+        "icon": null,
+        "children": null,
+        "label": "monitor"
+      }
+    ],
+    "label": "dashboard"
+  },
+  {
+    "key": "4",
+    "icon": null,
+    "children": [
+      {
+        "key": "4-1",
+        "icon": null,
+        "children": null,
+        "label": "game"
+      }
+    ],
+    "label": "study"
+  }
+]

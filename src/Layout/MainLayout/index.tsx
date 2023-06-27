@@ -1,13 +1,30 @@
 import { FC } from 'react';
 
-import { Outlet } from 'react-router-dom';
+import { theme } from 'antd';
+
+import { Content, Footer, Siderbar, Topbar } from '../LayoutComponent';
+
+const { useToken } = theme;
 
 const MainLayout: FC = () => {
+  const { token } = useToken();
+
   return (
-    <>
-      <div className="">MainLayout</div>
-      <Outlet />
-    </>
+    <section className="tw-h-full tw-w-full" style={{ color: token.colorText }}>
+      {/* 顶栏 */}
+
+      <Topbar isSticky />
+
+      <section className="tw-flex tw-h-full tw-w-full">
+        {/* 侧边栏 */}
+        <Siderbar />
+        <section className="tw-flex tw-w-full tw-flex-col">
+          {/* 路由内容 */}
+          <Content />
+          <Footer />
+        </section>
+      </section>
+    </section>
   );
 };
 

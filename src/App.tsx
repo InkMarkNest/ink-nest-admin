@@ -2,13 +2,16 @@ import { RouterProvider } from 'react-router-dom';
 
 import { useEffect } from 'react';
 
+import { ConfigProvider } from 'antd';
+
 import { router } from '@/router';
-import { useUserStore } from '@/store';
+import { useSettingsStore, useUserStore } from '@/store';
 import { LoadingIndicator } from '@/components';
 
 const App = () => {
   const isLoaded = useUserStore.use.isLoaded();
   const init = useUserStore.use.init();
+  const themeConfig = useSettingsStore.use.themeConfig();
 
   useEffect(() => {
     // 当应用启动时，执行 Zustand store 的 init 方法
@@ -20,7 +23,11 @@ const App = () => {
     return <LoadingIndicator />;
   }
   // 用户信息已经加载完成，开始渲染路由
-  return <RouterProvider router={router} />;
+  return (
+    <ConfigProvider theme={themeConfig}>
+      <RouterProvider router={router} />
+    </ConfigProvider>
+  );
 };
 
 export { App };

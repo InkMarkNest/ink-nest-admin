@@ -10,19 +10,14 @@ import { hasRoutePermission } from './permissionChecker';
 
 const AuthGuard: FC<AuthGuardComponent> = ({ element, moduleId, routeId }) => {
   const user = useUserStore.use.user();
-  const rememberMe = useUserStore.use.rememberMe();
 
   const location = useLocation();
 
   // 检查用户是否登录
-  let isLoggedIn = !!user;
+  const isLoggedIn = !!user;
 
   // 用户正在访问登录页面
   const isVisitingLogin = location.pathname === CommonPath.Login;
-
-  if (rememberMe) {
-    isLoggedIn = true;
-  }
 
   // 没有登录，则引导至登录页面
   if (!isLoggedIn && !isVisitingLogin) {

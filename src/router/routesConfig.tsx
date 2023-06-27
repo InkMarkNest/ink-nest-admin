@@ -18,6 +18,9 @@ const routesConfig: ExtendedRouteObject[] = [
     children: [
       {
         path: '/',
+        props: {
+          isMenu: false,
+        },
         element: <Navigate to="/dashboard" />,
       },
       ...dashboardRoutes,
@@ -25,14 +28,23 @@ const routesConfig: ExtendedRouteObject[] = [
   },
   {
     path: '/login',
+    props: {
+      isMenu: false,
+    },
     element: <AuthGuard element={<Login />} moduleId="" routeId="" />,
   },
   {
     path: '/not-authorized',
+    props: {
+      isMenu: false,
+    },
     element: <NotAuthorized />,
   },
   {
     path: '*',
+    props: {
+      isMenu: false,
+    },
     element: <NotFound />,
   },
   ...studyRoutes,

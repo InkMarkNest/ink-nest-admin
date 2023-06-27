@@ -1,7 +1,11 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
+import { theme } from 'antd';
+
 import { SettingsState, SettingsStore } from '@/types/systemSetting';
+
+import { baseThemeConfig } from '@/theme';
 
 import { createSelectors } from '../createSelectors';
 
@@ -9,7 +13,8 @@ import { createSelectors } from '../createSelectors';
  * 定义初始状态
  */
 const initialState: SettingsState = {
-  darkMode: false,
+  themeConfig: baseThemeConfig,
+  themeMode: 'defaultAlgorithm',
   language: 'en',
 };
 
@@ -19,9 +24,10 @@ const initialState: SettingsState = {
 const useSettingsStoreBase = create(
   immer<SettingsStore>((set) => ({
     ...initialState,
-    toggleDarkMode: () =>
+    toggleThemeMode: (themeMode: SettingsState['themeMode']) =>
       set((state) => {
-        state.darkMode = !state.darkMode;
+        state.themeMode = themeMode;
+        state.themeConfig.algorithm = theme[themeMode];
       }),
     setLanguage: (language) =>
       set((state) => {

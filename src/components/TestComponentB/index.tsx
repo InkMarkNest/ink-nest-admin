@@ -7,8 +7,6 @@ import { cloneDeep } from 'lodash-es';
 
 import { useUserStore } from '@/store';
 
-import { ButtonExample } from '../ComponentExample/Button';
-
 const person = {
   id: 2,
   name: 'John',
@@ -52,14 +50,6 @@ const TestComponentB: FC = () => {
       </div>
       {/* 添加一个按钮来触发用户状态的更新 */}
       <Button onClick={updateUser}>更新用户状态</Button>
-      <ButtonExample
-        onClick={() => {
-          console.log('哈喽');
-        }}
-        disabled={false}
-      >
-        测试
-      </ButtonExample>
     </div>
   );
 };
