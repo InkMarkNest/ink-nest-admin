@@ -61,7 +61,7 @@ const RouteMenu: FC = () => {
       items={items}
       defaultOpenKeys={[menuData.defaultOpenKey]}
       defaultSelectedKeys={[menuData.defaultSelectedKey]}
-      style={{ backgroundColor: token.colorBgLayout }}
+      style={{ backgroundColor: token.colorPrimaryBg }}
     />
   );
 };

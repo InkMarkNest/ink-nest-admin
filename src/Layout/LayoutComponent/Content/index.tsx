@@ -1,21 +1,43 @@
-import { theme } from 'antd';
+import { Breadcrumb, theme } from 'antd';
 import { FC } from 'react';
 
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const { useToken } = theme;
 
 const Content: FC = () => {
   const { token } = useToken();
 
+  const location = useLocation();
+
+  const pathSnippets = location.pathname.split('/').filter((i) => i);
+
+  const breadcrumbItems = pathSnippets.map((_, index) => {
+    const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
+
+    return {
+      key: url,
+      title: <Link to={url}>{pathSnippets[index]}</Link>,
+    };
+  });
+
   return (
     <main
-      className="tw-h-full tw-w-full tw-p-8"
+      className="tw-relative tw-h-full tw-w-full tw-p-8"
       style={{
-        backgroundColor: token.colorBgContainer,
+        backgroundColor: token.colorPrimaryBgHover,
       }}
     >
-      <div className="tw-w-ful tw-h-full">
+      <div
+        className="tw-h-full tw-w-full"
+        style={{
+          backgroundColor: token.colorBgContainer,
+        }}
+      >
+        <Breadcrumb
+          className="tw-absolute tw-left-8 tw-top-1 tw-border-b-2"
+          items={breadcrumbItems}
+        />
         <Outlet />
       </div>
     </main>

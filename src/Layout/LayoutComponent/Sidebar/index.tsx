@@ -15,7 +15,7 @@ const Siderbar: FC<SiderbarProps> = ({ isSticky }) => {
   return (
     <aside
       className={clsx('tw-h-auto tw-w-56', isSticky && stickySider)}
-      style={{ backgroundColor: token.colorBgLayout }}
+      style={{ backgroundColor: token.colorPrimaryBg }}
     >
       <RouteMenu />
     </aside>

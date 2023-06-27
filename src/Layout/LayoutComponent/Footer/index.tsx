@@ -9,7 +9,7 @@ const Footer: FC = () => {
   return (
     <footer
       className="tw-flex tw-h-20 tw-w-full tw-items-center tw-justify-center tw-p-8"
-      style={{ backgroundColor: token.colorBgLayout }}
+      style={{ backgroundColor: token.colorPrimaryBg }}
     >
       Ink Nest Admin
     </footer>

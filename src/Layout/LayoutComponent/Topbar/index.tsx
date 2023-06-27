@@ -21,7 +21,7 @@ const Topbar: FC<TopbarProps> = ({ isSticky }) => {
         isSticky && stickyTop,
         bgColor,
       )}
-      style={{ backgroundColor: token.colorBgLayout }}
+      style={{ backgroundColor: token.colorPrimaryBg }}
     >
       <Logo />
       <UserControl />
