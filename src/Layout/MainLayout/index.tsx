@@ -17,7 +17,7 @@ const MainLayout: FC = () => {
 
       <section className="tw-flex tw-h-full tw-w-full">
         {/* 侧边栏 */}
-        <Siderbar isSticky />
+        <Siderbar />
         <section className="tw-flex tw-w-full tw-flex-col tw-transition-all">
           {/* 路由内容 */}
           <Content />

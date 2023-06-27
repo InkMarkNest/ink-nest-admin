@@ -25,7 +25,6 @@ const Logout: FC = () => {
       <Button
         type="text"
         shape="circle"
-        ghost
         icon={<SvgIcon element={CILogout} />}
         onClick={handleLogout}
       />

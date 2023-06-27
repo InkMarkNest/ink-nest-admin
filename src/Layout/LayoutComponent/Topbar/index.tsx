@@ -7,10 +7,10 @@ import { Logo, UserControl } from '@/components';
 
 const { useToken } = theme;
 
-const Topbar: FC<TopbarProps> = ({ isSticky }) => {
+const Topbar: FC<TopbarProps> = () => {
   const { token } = useToken();
 
-  const stickyTop = 'tw-sticky  tw-z-10 tw-top-0';
+  // const stickyTop = 'tw-sticky  tw-z-10 tw-top-0';
 
   const bgColor = `tw-bg-[${token.colorPrimaryBg}]`;
 
@@ -18,7 +18,6 @@ const Topbar: FC<TopbarProps> = ({ isSticky }) => {
     <div
       className={clsx(
         'tw-flex tw-h-20 tw-w-full tw-items-center tw-justify-between tw-border-0 tw-border-b-2 tw-border-solid tw-px-4 tw-text-2xl tw-font-semibold',
-        isSticky && stickyTop,
         bgColor,
       )}
       style={{ backgroundColor: token.colorPrimaryBg, borderColor: token.colorBgLayout }}

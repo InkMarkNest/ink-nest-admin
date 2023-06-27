@@ -28,7 +28,7 @@ const Content: FC = () => {
 
   return (
     <main
-      className="tw-relative tw-h-full tw-w-full tw-p-8"
+      className="tw-relative tw-h-full tw-w-full tw-p-8 tw-pt-12"
       style={{
         backgroundColor: token.colorPrimaryBgHover,
       }}
@@ -40,7 +40,7 @@ const Content: FC = () => {
         }}
       >
         <Breadcrumb
-          className="tw-absolute tw-left-8 tw-top-1 tw-border-b-2"
+          className="tw-absolute tw-left-8 tw-top-4 tw-border-b-2"
           items={breadcrumbItems}
         />
         <Outlet />

@@ -11,23 +11,18 @@ import { useSettingsStore } from '@/store';
 
 const { useToken } = theme;
 
-const Siderbar: FC<SiderbarProps> = ({ isSticky }) => {
+const Siderbar: FC<SiderbarProps> = () => {
   const collapsed = useSettingsStore.use.collapsed();
   const setCollapsed = useSettingsStore.use.setCollapsed();
   const { token } = useToken();
 
-  const stickySider = 'tw-sticky tw-h-screen tw-z-10 tw-left-0 tw-top-0 tw-bottom-0';
-
+  // const stickySider = 'tw-sticky tw-h-screen tw-z-10 tw-left-0 tw-top-0 tw-bottom-0';
   return (
     <aside
-      className={clsx(
-        'tw-relative tw-h-full tw-w-56 tw-transition-all',
-        isSticky && stickySider,
-        collapsed && 'tw-w-14',
-      )}
+      className={clsx('tw-relative tw-h-full tw-transition-all', collapsed ? 'tw-w-14' : 'tw-w-56')}
       style={{ backgroundColor: token.colorPrimaryBg }}
     >
-      <div className="tw-flex tw-h-12 tw-w-full tw-items-center tw-justify-center">
+      <div className="tw-flex tw-h-12 tw-w-full tw-items-center tw-justify-center tw-px-2">
         <Button
           type="text"
           style={{ width: '100%' }}

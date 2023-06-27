@@ -48,7 +48,7 @@ const ThemeModeControl: FC = () => {
     <Dropdown menu={{ items, onClick }} placement="bottom">
       <a onClick={(e) => e.preventDefault()}>
         <Space>
-          <Button type="text" shape="circle" ghost icon={<SvgIcon element={PIHappy} />} />
+          <Button type="text" shape="circle" icon={<SvgIcon element={PIHappy} />} />
         </Space>
       </a>
     </Dropdown>

@@ -17,6 +17,8 @@ const initialState: SettingsState = {
   themeMode: 'defaultAlgorithm',
   language: 'en',
   collapsed: false,
+  topbarSticky: false,
+  siderbarSticky: false,
 };
 
 /**
@@ -37,6 +39,14 @@ const useSettingsStoreBase = create(
     setCollapsed: (collapsed) =>
       set((state) => {
         state.collapsed = collapsed;
+      }),
+    setSiderbarSticky: (siderbarSticky) =>
+      set((state) => {
+        state.siderbarSticky = siderbarSticky;
+      }),
+    setTopbarSticky: (topbarSticky) =>
+      set((state) => {
+        state.topbarSticky = topbarSticky;
       }),
   })),
 );

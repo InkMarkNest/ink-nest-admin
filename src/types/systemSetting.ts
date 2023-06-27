@@ -21,6 +21,14 @@ export interface SettingsState {
    * 侧边栏伸缩
    */
   collapsed: boolean;
+  /**
+   * 顶栏固定
+   */
+  topbarSticky: boolean;
+  /**
+   * 侧边栏固定
+   */
+  siderbarSticky: boolean;
 }
 
 /**
@@ -42,6 +50,16 @@ export interface SettingsActions {
    * @param {boolean} collapsed - 是否伸缩
    */
   setCollapsed: (collapsed: boolean) => void;
+  /**
+   * 设置侧边栏固定
+   * @param {boolean} siderbarSticky - 是否固定
+   */
+  setSiderbarSticky: (siderbarSticky: boolean) => void;
+  /**
+   * 设置顶栏固定
+   * @param {boolean} topbarSticky - 是否固定
+   */
+  setTopbarSticky: (topbarSticky: boolean) => void;
 }
 
 /**
