@@ -1,3 +1,4 @@
+import { MenuProps } from 'antd';
 import { ReactNode } from 'react';
 import { RouteObject } from 'react-router-dom';
 
@@ -30,3 +31,5 @@ export interface ModulePermission {
   description: string;
   routes: RoutePermission[];
 }
+
+export type MenuItem = Required<MenuProps>['items'][number];
