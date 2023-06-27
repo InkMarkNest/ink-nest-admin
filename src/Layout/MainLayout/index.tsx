@@ -13,12 +13,12 @@ const MainLayout: FC = () => {
     <section className="tw-h-full tw-w-full" style={{ color: token.colorText }}>
       {/* 顶栏 */}
 
-      <Topbar isSticky />
+      <Topbar />
 
       <section className="tw-flex tw-h-full tw-w-full">
         {/* 侧边栏 */}
-        <Siderbar />
-        <section className="tw-flex tw-w-full tw-flex-col">
+        <Siderbar isSticky />
+        <section className="tw-flex tw-w-full tw-flex-col tw-transition-all">
           {/* 路由内容 */}
           <Content />
           <Footer />

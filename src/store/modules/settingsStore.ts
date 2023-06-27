@@ -16,6 +16,7 @@ const initialState: SettingsState = {
   themeConfig: baseThemeConfig,
   themeMode: 'defaultAlgorithm',
   language: 'en',
+  collapsed: false,
 };
 
 /**
@@ -32,6 +33,10 @@ const useSettingsStoreBase = create(
     setLanguage: (language) =>
       set((state) => {
         state.language = language;
+      }),
+    setCollapsed: (collapsed) =>
+      set((state) => {
+        state.collapsed = collapsed;
       }),
   })),
 );

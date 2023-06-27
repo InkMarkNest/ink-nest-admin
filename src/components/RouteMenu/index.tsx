@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { router } from '@/router';
 
-import { useUserStore } from '@/store';
+import { useSettingsStore, useUserStore } from '@/store';
 
 import { convertRoutesToMenu, createMenuMap, isMenuWithChildren } from './convertRoutesToMenu';
 
@@ -16,6 +16,7 @@ const { useToken } = theme;
 // 路由菜单组件
 const RouteMenu: FC = () => {
   const { token } = useToken();
+  const collapsed = useSettingsStore.use.collapsed();
   const navigate = useNavigate();
   const user = useUserStore.use.user();
 
@@ -55,13 +56,14 @@ const RouteMenu: FC = () => {
 
   return (
     <Menu
-      className="tw-h-full tw-w-full"
+      className="tw-h-auto tw-w-full"
       onClick={onClick}
       mode="inline"
       items={items}
       defaultOpenKeys={[menuData.defaultOpenKey]}
       defaultSelectedKeys={[menuData.defaultSelectedKey]}
       style={{ backgroundColor: token.colorPrimaryBg }}
+      inlineCollapsed={collapsed}
     />
   );
 };

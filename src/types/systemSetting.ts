@@ -11,12 +11,16 @@ export interface SettingsState {
   /**
    * 主题模式
    */
-  themeMode: 'defaultAlgorithm' | 'darkAlgorithm' | 'compactAlgorithm' | 'system';
+  themeMode: 'defaultAlgorithm' | 'darkAlgorithm' | 'compactAlgorithm';
 
   /**
    * 当前应用语言
    */
   language: string;
+  /**
+   * 侧边栏伸缩
+   */
+  collapsed: boolean;
 }
 
 /**
@@ -33,6 +37,11 @@ export interface SettingsActions {
    * @param {string} language - 新的语言标识
    */
   setLanguage: (language: string) => void;
+  /**
+   * 设置侧边栏伸缩
+   * @param {boolean} collapsed - 是否伸缩
+   */
+  setCollapsed: (collapsed: boolean) => void;
 }
 
 /**

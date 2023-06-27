@@ -17,11 +17,11 @@ const Topbar: FC<TopbarProps> = ({ isSticky }) => {
   return (
     <div
       className={clsx(
-        'tw-flex tw-h-20 tw-w-full tw-items-center tw-justify-between tw-px-4 tw-text-2xl tw-font-semibold',
+        'tw-flex tw-h-20 tw-w-full tw-items-center tw-justify-between tw-border-0 tw-border-b-2 tw-border-solid tw-px-4 tw-text-2xl tw-font-semibold',
         isSticky && stickyTop,
         bgColor,
       )}
-      style={{ backgroundColor: token.colorPrimaryBg }}
+      style={{ backgroundColor: token.colorPrimaryBg, borderColor: token.colorBgLayout }}
     >
       <Logo />
       <UserControl />
