@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
+import { Menu, theme } from 'antd';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,10 @@ import { useUserStore } from '@/store';
 
 import { convertRoutesToMenu, findItemByKey } from './convertRoutesToMenu';
 
+const { useToken } = theme;
+
 const RouteMenu: FC = () => {
+  const { token } = useToken();
   const navigate = useNavigate();
   const user = useUserStore.use.user();
 
@@ -19,14 +22,22 @@ const RouteMenu: FC = () => {
   if (user) {
     items = convertRoutesToMenu(router.routes, user);
   }
-  console.log('items', items);
+
   const onClick: MenuProps['onClick'] = (e) => {
     const menu = findItemByKey(e.key, items);
 
     menu && navigate(menu.route);
   };
 
-  return <Menu className="tw-h-full tw-w-full" onClick={onClick} mode="inline" items={items} />;
+  return (
+    <Menu
+      className="tw-h-full tw-w-full"
+      onClick={onClick}
+      mode="inline"
+      items={items}
+      style={{ backgroundColor: token.colorBgLayout }}
+    />
+  );
 };
 
 export { RouteMenu };

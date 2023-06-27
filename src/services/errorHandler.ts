@@ -56,7 +56,6 @@ const handleHTTPError = (status: HttpErrorCode, error: AxiosError): Promise<void
  */
 const handleBusinessError = (code: BusinessErrorCode, error: AxiosError): Promise<void> => {
   let message: string;
-  console.log('code -', code);
   switch (code) {
     case BusinessErrorCode.GENERAL_ERROR:
       message = 'General error';
