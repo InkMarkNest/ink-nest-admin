@@ -3,6 +3,9 @@ import { FC } from 'react';
 
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
+import { ReactComponent as PIHome } from '@/assets/svg/pixel-icon/-home.svg';
+import { SvgIcon } from '@/components';
+
 const { useToken } = theme;
 
 const Content: FC = () => {
@@ -20,6 +23,8 @@ const Content: FC = () => {
       title: <Link to={url}>{pathSnippets[index]}</Link>,
     };
   });
+
+  breadcrumbItems.unshift({ key: '', title: <SvgIcon element={PIHome} size="small" /> });
 
   return (
     <main
