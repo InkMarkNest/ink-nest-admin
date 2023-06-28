@@ -4,6 +4,7 @@ import { theme } from 'antd';
 import { useSettingsStore } from '@/store';
 
 import { Content, Footer, Setting, Sidebar, Topbar } from '../LayoutComponent';
+import { FloatSetting } from '../LayoutComponent/Setting/FloatSetting';
 
 const { useToken } = theme;
 
@@ -72,6 +73,7 @@ const MainLayout: FC = () => {
         <LayoutWithSidebarAndContent sidebarPosition="left" />
       )}
       <Setting />
+      <FloatSetting />
     </section>
   );
 };
