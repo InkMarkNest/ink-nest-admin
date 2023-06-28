@@ -43,7 +43,11 @@ export interface SettingsActions {
    * 切换暗黑模式状态
    */
   toggleThemeMode: (themeMode: SettingsState['themeMode']) => void;
-
+  /**
+   * 设置系统主题
+   * @param {string} language - 新的语言标识
+   */
+  setTheme: (themeConfig: ThemeConfig) => void;
   /**
    * 设置应用语言
    * @param {string} language - 新的语言标识

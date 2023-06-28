@@ -33,6 +33,10 @@ const useSettingsStoreBase = create(
         state.themeMode = themeMode;
         state.themeConfig.algorithm = theme[themeMode];
       }),
+    setTheme: (themeConfig) =>
+      set((state) => {
+        state.themeConfig = themeConfig;
+      }),
     setLanguage: (language) =>
       set((state) => {
         state.language = language;

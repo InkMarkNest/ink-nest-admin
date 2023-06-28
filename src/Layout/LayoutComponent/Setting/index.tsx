@@ -8,6 +8,8 @@ import { ReactComponent as CIClose } from '@/assets/svg/common-icon/close.svg';
 
 import { SvgIcon } from '@/components';
 
+import { ThemeColor } from './ThemeColor';
+
 const Setting: FC = () => {
   const drawerVisible = useSettingsStore.use.drawerVisible();
   const setDrawerVisible = useSettingsStore.use.setDrawerVisible();
@@ -18,7 +20,11 @@ const Setting: FC = () => {
       onClose={() => setDrawerVisible(false)}
       open={drawerVisible}
       closeIcon={<SvgIcon element={CIClose} size="large" />}
-    />
+    >
+      {/* 主题 */}
+      <ThemeColor />
+      {/* 布局 */}
+    </Drawer>
   );
 };
 
