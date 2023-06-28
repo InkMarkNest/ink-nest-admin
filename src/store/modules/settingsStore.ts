@@ -20,6 +20,7 @@ const initialState: SettingsState = {
   topbarSticky: false,
   siderbarSticky: false,
   drawerVisible: false,
+  layoutMode: 'topBarAndLeftSidebarAndContent',
 };
 
 /**
@@ -56,6 +57,11 @@ const useSettingsStoreBase = create(
     setDrawerVisible: (drawerVisible) => {
       set((state) => {
         state.drawerVisible = drawerVisible;
+      });
+    },
+    setLayoutMode: (layoutMode) => {
+      set((state) => {
+        state.layoutMode = layoutMode;
       });
     },
   })),

@@ -33,6 +33,7 @@ export interface SettingsState {
    * 系统设置抽屉
    */
   drawerVisible: boolean;
+  layoutMode: LayoutMode;
 }
 
 /**
@@ -73,6 +74,11 @@ export interface SettingsActions {
    * @param {boolean} drawerVisible - 是否显示
    */
   setDrawerVisible: (drawerVisible: boolean) => void;
+  /**
+   * 设置系统布局模式
+   * @param {boolean} layoutMode - 布局模式
+   */
+  setLayoutMode: (layoutMode: LayoutMode) => void;
 }
 
 /**
@@ -89,3 +95,9 @@ export enum ThemeMode {
   compactAlgorithm = 'compactAlgorithm',
   system = 'system',
 }
+
+export type LayoutMode =
+  | 'topBarAndLeftSidebarAndContent'
+  | 'topBarAndContent'
+  | 'contentAndRightSidebar'
+  | 'leftSidebarAndContent';

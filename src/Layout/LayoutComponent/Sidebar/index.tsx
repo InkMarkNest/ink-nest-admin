@@ -11,7 +11,7 @@ import { useSettingsStore } from '@/store';
 
 const { useToken } = theme;
 
-const Siderbar: FC<SiderbarProps> = () => {
+const Sidebar: FC<SiderbarProps> = () => {
   const collapsed = useSettingsStore.use.collapsed();
   const setCollapsed = useSettingsStore.use.setCollapsed();
   const { token } = useToken();
@@ -35,4 +35,4 @@ const Siderbar: FC<SiderbarProps> = () => {
   );
 };
 
-export { Siderbar };
+export { Sidebar };

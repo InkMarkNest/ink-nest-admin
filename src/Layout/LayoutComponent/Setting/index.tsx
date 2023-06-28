@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Drawer } from 'antd';
+import { Divider, Drawer } from 'antd';
 
 import { useSettingsStore } from '@/store';
 
@@ -9,6 +9,8 @@ import { ReactComponent as CIClose } from '@/assets/svg/common-icon/close.svg';
 import { SvgIcon } from '@/components';
 
 import { ThemeColor } from './ThemeColor';
+import { LayoutMode } from './LayoutMode';
+import { LayoutSelector } from './LayoutSelector';
 
 const Setting: FC = () => {
   const drawerVisible = useSettingsStore.use.drawerVisible();
@@ -23,7 +25,12 @@ const Setting: FC = () => {
     >
       {/* 主题 */}
       <ThemeColor />
+      <Divider />
       {/* 布局 */}
+      <LayoutMode />
+      <Divider />
+      {/* 选择布局组件 */}
+      <LayoutSelector />
     </Drawer>
   );
 };
