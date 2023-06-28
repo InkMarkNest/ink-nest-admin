@@ -19,6 +19,7 @@ const initialState: SettingsState = {
   collapsed: false,
   topbarSticky: false,
   siderbarSticky: false,
+  drawerVisible: false,
 };
 
 /**
@@ -48,6 +49,11 @@ const useSettingsStoreBase = create(
       set((state) => {
         state.topbarSticky = topbarSticky;
       }),
+    setDrawerVisible: (drawerVisible) => {
+      set((state) => {
+        state.drawerVisible = drawerVisible;
+      });
+    },
   })),
 );
 

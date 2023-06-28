@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { theme } from 'antd';
 
-import { Content, Footer, Siderbar, Topbar } from '../LayoutComponent';
+import { Content, Footer, Setting, Siderbar, Topbar } from '../LayoutComponent';
 
 const { useToken } = theme;
 
@@ -24,6 +24,7 @@ const MainLayout: FC = () => {
           <Footer />
         </section>
       </section>
+      <Setting />
     </section>
   );
 };

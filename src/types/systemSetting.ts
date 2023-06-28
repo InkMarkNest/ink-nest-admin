@@ -29,6 +29,10 @@ export interface SettingsState {
    * 侧边栏固定
    */
   siderbarSticky: boolean;
+  /**
+   * 系统设置抽屉
+   */
+  drawerVisible: boolean;
 }
 
 /**
@@ -60,6 +64,11 @@ export interface SettingsActions {
    * @param {boolean} topbarSticky - 是否固定
    */
   setTopbarSticky: (topbarSticky: boolean) => void;
+  /**
+   * 设置系统设置显隐
+   * @param {boolean} drawerVisible - 是否显示
+   */
+  setDrawerVisible: (drawerVisible: boolean) => void;
 }
 
 /**
