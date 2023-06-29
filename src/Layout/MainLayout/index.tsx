@@ -1,12 +1,17 @@
 import { FC } from 'react';
-import { theme } from 'antd';
+
+import { createStyles } from 'antd-style';
 
 import { useSettingsStore } from '@/store';
 
 import { Content, Footer, Setting, Sidebar, Topbar } from '../LayoutComponent';
 import { FloatSetting } from '../LayoutComponent/Setting/FloatSetting';
 
-const { useToken } = theme;
+const useStyle = createStyles(({ token, css }) => ({
+  mainLayout: css`
+    color: ${token.colorText};
+  `,
+}));
 
 const LayoutWithTopbarAndContent = () => (
   <>
@@ -57,11 +62,11 @@ const LayoutWithSidebarAndContent: FC<{ sidebarPosition: 'left' | 'right' }> = (
 );
 
 const MainLayout: FC = () => {
-  const { token } = useToken();
+  const { styles, cx } = useStyle();
   const layoutMode = useSettingsStore.use.layoutMode();
 
   return (
-    <section className="tw-h-full tw-w-full" style={{ color: token.colorText }}>
+    <section className={cx('tw-h-full tw-w-full', styles.mainLayout)}>
       {layoutMode === 'topBarAndContent' && <LayoutWithTopbarAndContent />}
       {layoutMode === 'topBarAndLeftSidebarAndContent' && (
         <LayoutWithTopBarAndLeftSidebarAndContent />

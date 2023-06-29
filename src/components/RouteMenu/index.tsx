@@ -1,9 +1,11 @@
 import { FC, useMemo } from 'react';
 
 import type { MenuProps } from 'antd';
-import { Menu, theme } from 'antd';
+import { Menu } from 'antd';
 
 import { useNavigate } from 'react-router-dom';
+
+import { createStyles } from 'antd-style';
 
 import { router } from '@/router';
 
@@ -11,11 +13,15 @@ import { useSettingsStore, useUserStore } from '@/store';
 
 import { convertRoutesToMenu, createMenuMap, isMenuWithChildren } from './convertRoutesToMenu';
 
-const { useToken } = theme;
+const useStyle = createStyles(({ token, css }) => ({
+  menu: css`
+    background: ${token.colorPrimaryBg};
+  `,
+}));
 
 // 路由菜单组件
 const RouteMenu: FC = () => {
-  const { token } = useToken();
+  const { styles, cx } = useStyle();
   const collapsed = useSettingsStore.use.collapsed();
   const navigate = useNavigate();
   const user = useUserStore.use.user();
@@ -56,13 +62,12 @@ const RouteMenu: FC = () => {
 
   return (
     <Menu
-      className="tw-h-auto tw-w-full"
+      className={cx('tw-h-auto tw-w-full', styles.menu)}
       onClick={onClick}
       mode="inline"
       items={items}
       defaultOpenKeys={[menuData.defaultOpenKey]}
       defaultSelectedKeys={[menuData.defaultSelectedKey]}
-      style={{ backgroundColor: token.colorPrimaryBg }}
       inlineCollapsed={collapsed}
     />
   );

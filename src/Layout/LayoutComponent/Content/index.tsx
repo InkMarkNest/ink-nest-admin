@@ -1,15 +1,24 @@
-import { Breadcrumb, theme } from 'antd';
+import { Breadcrumb } from 'antd';
 import { FC } from 'react';
 
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
+import { createStyles } from 'antd-style';
+
 import { ReactComponent as PIHome } from '@/assets/svg/pixel-icon/-home.svg';
 import { SvgIcon } from '@/components';
 
-const { useToken } = theme;
+const useStyle = createStyles(({ token, css }) => ({
+  main: css`
+    background: ${token.colorPrimaryBgHover};
+  `,
+  content: css`
+    background: ${token.colorBgContainer};
+  `,
+}));
 
 const Content: FC = () => {
-  const { token } = useToken();
+  const { styles, cx } = useStyle();
 
   const location = useLocation();
 
@@ -27,18 +36,8 @@ const Content: FC = () => {
   breadcrumbItems.unshift({ key: '', title: <SvgIcon element={PIHome} size="small" /> });
 
   return (
-    <main
-      className="tw-relative tw-h-full tw-w-full tw-p-8 tw-pt-12"
-      style={{
-        backgroundColor: token.colorPrimaryBgHover,
-      }}
-    >
-      <div
-        className="tw-h-full tw-w-full"
-        style={{
-          backgroundColor: token.colorBgContainer,
-        }}
-      >
+    <main className={cx('tw-relative tw-h-full tw-w-full tw-p-8 tw-pt-12', styles.main)}>
+      <div className={cx('tw-h-full tw-w-full', styles.content)}>
         <Breadcrumb
           className="tw-absolute tw-left-8 tw-top-4 tw-border-b-2"
           items={breadcrumbItems}

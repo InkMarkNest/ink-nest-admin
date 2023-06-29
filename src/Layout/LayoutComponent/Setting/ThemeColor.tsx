@@ -1,17 +1,23 @@
-import { ColorPicker, Space, theme } from 'antd';
+import { ColorPicker, Space } from 'antd';
 import { Color } from 'antd/es/color-picker';
 import { FC } from 'react';
 
 import { cloneDeep } from 'lodash-es';
 
+import { createStyles } from 'antd-style';
+
 import { useSettingsStore } from '@/store';
 
 import { presets } from './presets';
 
-const { useToken } = theme;
+const useStyle = createStyles(({ token, css }) => ({
+  themeColor: css`
+    color: ${token.colorText};
+  `,
+}));
 
 const ThemeColor: FC = () => {
-  const { token } = useToken();
+  const { styles, cx } = useStyle();
 
   const themeConfig = useSettingsStore.use.themeConfig();
   const setTheme = useSettingsStore.use.setTheme();
@@ -26,7 +32,7 @@ const ThemeColor: FC = () => {
   };
 
   return (
-    <div className="tw-h-20 tw-w-full" style={{ color: token.colorText }}>
+    <div className={cx('tw-h-20 tw-w-full', styles.themeColor)}>
       <Space>
         <span>主题色设置</span>
         <ColorPicker

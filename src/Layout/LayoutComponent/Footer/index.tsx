@@ -1,15 +1,22 @@
-import { theme, Button } from 'antd';
+import { Button } from 'antd';
 import { FC } from 'react';
+import { createStyles } from 'antd-style';
 
-const { useToken } = theme;
+const useStyle = createStyles(({ token, css }) => ({
+  footer: css`
+    background: ${token.colorPrimaryBgHover};
+  `,
+}));
 
 const Footer: FC = () => {
-  const { token } = useToken();
+  const { styles, cx } = useStyle();
 
   return (
     <footer
-      className="tw-flex tw-h-14 tw-w-full tw-items-center tw-justify-center tw-p-8"
-      style={{ backgroundColor: token.colorPrimaryBgHover }}
+      className={cx(
+        'tw-flex tw-h-14 tw-w-full tw-items-center tw-justify-center tw-p-8',
+        styles.footer,
+      )}
     >
       <p>&copy; 2023 Ink Nest Admin. All Rights Reserved. </p>
       <p>
