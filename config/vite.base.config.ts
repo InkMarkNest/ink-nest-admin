@@ -5,7 +5,6 @@ import svgr from 'vite-plugin-svgr';
 import react from '@vitejs/plugin-react-swc';
 
 const baseConfig = {
-  base: './',
   plugins: [react(), svgr({ include: '**/*.svg' })],
   resolve: {
     alias: {

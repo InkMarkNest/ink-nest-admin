@@ -6,6 +6,9 @@ import { worker } from '../../mocks/browser';
  */
 function useMock() {
   worker.start({
+    serviceWorker: {
+      url: `${import.meta.env.VITE_MSW_PATH}mockServiceWorker.js`,
+    },
     onUnhandledRequest: 'bypass',
   });
 }

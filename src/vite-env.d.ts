@@ -12,6 +12,7 @@ interface ImportMetaEnv {
   readonly VITE_LOCAL_VERSION: number;
   readonly VITE_LOCAL_STORENAME: string;
   readonly VITE_LOCAL_DESCRIPTION: string;
+  readonly VITE_MSW_PATH: string;
   // 更多环境变量...
 }
 

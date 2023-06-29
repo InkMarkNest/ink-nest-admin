@@ -8,7 +8,8 @@ import './styles/index.scss';
 
 import { executeFunctions, useMock } from './utils';
 
-if (import.meta.env.MODE === 'development') executeFunctions([useMock]);
+// if (import.meta.env.MODE === 'development') executeFunctions([useMock]);
+executeFunctions([useMock]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
