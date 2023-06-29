@@ -18,7 +18,7 @@ const Topbar: FC<TopbarProps> = () => {
   return (
     <div
       className={cx(
-        'tw-flex tw-h-20 tw-w-full tw-items-center tw-justify-between tw-border-0 tw-border-b-2 tw-border-solid tw-px-4 tw-text-2xl tw-font-semibold',
+        'tw-flex tw-h-20 tw-w-full tw-items-center tw-justify-between tw-border-0 tw-border-b-2 tw-border-solid tw-px-4 tw-font-semibold',
         styles.sidebar,
       )}
     >
