@@ -13,14 +13,14 @@ import { LayoutMode } from './LayoutMode';
 import { LayoutSelector } from './LayoutSelector';
 
 const Setting: FC = () => {
-  const drawerVisible = useSettingsStore.use.drawerVisible();
-  const setDrawerVisible = useSettingsStore.use.setDrawerVisible();
+  const settingDrawerVisible = useSettingsStore.use.settingDrawerVisible();
+  const setSettingDrawerVisible = useSettingsStore.use.setSettingDrawerVisible();
 
   return (
     <Drawer
       title="系统设置"
-      onClose={() => setDrawerVisible(false)}
-      open={drawerVisible}
+      onClose={() => setSettingDrawerVisible(false)}
+      open={settingDrawerVisible}
       closeIcon={<SvgIcon element={CIClose} size="large" />}
     >
       {/* 主题 */}

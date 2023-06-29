@@ -9,13 +9,13 @@ import { useSettingsStore } from '@/store';
 import { SvgIcon } from '../Icon';
 
 const Setting: FC = () => {
-  const setDrawerVisible = useSettingsStore.use.setDrawerVisible();
+  const setSettingDrawerVisible = useSettingsStore.use.setSettingDrawerVisible();
 
   return (
     <Button
       type="text"
       shape="circle"
-      onClick={() => setDrawerVisible(true)}
+      onClick={() => setSettingDrawerVisible(true)}
       icon={<SvgIcon element={PISettings} />}
     />
   );

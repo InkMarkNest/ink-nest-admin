@@ -8,8 +8,8 @@ import { useSettingsStore } from '@/store';
 import { SvgIcon } from '@/components';
 
 const FloatSetting: FC = () => {
-  const drawerVisible = useSettingsStore.use.drawerVisible();
-  const setDrawerVisible = useSettingsStore.use.setDrawerVisible();
+  const settingDrawerVisible = useSettingsStore.use.settingDrawerVisible();
+  const setSettingDrawerVisible = useSettingsStore.use.setSettingDrawerVisible();
   const layoutMode = useSettingsStore.use.layoutMode();
 
   return (
@@ -17,7 +17,7 @@ const FloatSetting: FC = () => {
       <FloatButton.Group shape="circle" style={{ right: 24 }}>
         {(layoutMode === 'leftSidebarAndContent' || layoutMode === 'contentAndRightSidebar') && (
           <FloatButton
-            onClick={() => setDrawerVisible(!drawerVisible)}
+            onClick={() => setSettingDrawerVisible(!settingDrawerVisible)}
             icon={<SvgIcon element={PISettings} />}
           />
         )}

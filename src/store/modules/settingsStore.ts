@@ -19,8 +19,9 @@ const initialState: SettingsState = {
   collapsed: false,
   topbarSticky: false,
   siderbarSticky: false,
-  drawerVisible: false,
+  settingDrawerVisible: false,
   layoutMode: 'topBarAndLeftSidebarAndContent',
+  sidebarDrawerVisible: false,
 };
 
 /**
@@ -54,14 +55,19 @@ const useSettingsStoreBase = create(
       set((state) => {
         state.topbarSticky = topbarSticky;
       }),
-    setDrawerVisible: (drawerVisible) => {
+    setSettingDrawerVisible: (settingDrawerVisible) => {
       set((state) => {
-        state.drawerVisible = drawerVisible;
+        state.settingDrawerVisible = settingDrawerVisible;
       });
     },
     setLayoutMode: (layoutMode) => {
       set((state) => {
         state.layoutMode = layoutMode;
+      });
+    },
+    setSidebarDrawerVisible: (sidebarDrawerVisible) => {
+      set((state) => {
+        state.sidebarDrawerVisible = sidebarDrawerVisible;
       });
     },
   })),

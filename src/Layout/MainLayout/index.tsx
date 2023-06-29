@@ -4,7 +4,7 @@ import { createStyles } from 'antd-style';
 
 import { useSettingsStore } from '@/store';
 
-import { Content, Footer, Setting, Sidebar, Topbar } from '../LayoutComponent';
+import { Content, FloatSidebar, Footer, Setting, Sidebar, Topbar } from '../LayoutComponent';
 import { FloatSetting } from '../LayoutComponent/Setting/FloatSetting';
 
 const useStyle = createStyles(({ token, css }) => ({
@@ -79,6 +79,7 @@ const MainLayout: FC = () => {
       )}
       <Setting />
       <FloatSetting />
+      {layoutMode === 'topBarAndContent' && <FloatSidebar />}
     </section>
   );
 };

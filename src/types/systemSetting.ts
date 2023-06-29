@@ -32,8 +32,15 @@ export interface SettingsState {
   /**
    * 系统设置抽屉
    */
-  drawerVisible: boolean;
+  settingDrawerVisible: boolean;
+  /**
+   * 布局模式
+   */
   layoutMode: LayoutMode;
+  /**
+   * 侧边栏抽屉
+   */
+  sidebarDrawerVisible: boolean;
 }
 
 /**
@@ -71,14 +78,19 @@ export interface SettingsActions {
   setTopbarSticky: (topbarSticky: boolean) => void;
   /**
    * 设置系统设置显隐
-   * @param {boolean} drawerVisible - 是否显示
+   * @param {boolean} settingDrawerVisible - 是否显示
    */
-  setDrawerVisible: (drawerVisible: boolean) => void;
+  setSettingDrawerVisible: (settingDrawerVisible: boolean) => void;
   /**
    * 设置系统布局模式
    * @param {boolean} layoutMode - 布局模式
    */
   setLayoutMode: (layoutMode: LayoutMode) => void;
+  /**
+   * 设置侧边栏抽屉
+   * @param {boolean} sidebarDrawerVisible - 侧边栏显示隐藏
+   */
+  setSidebarDrawerVisible: (sidebarDrawerVisible: boolean) => void;
 }
 
 /**
