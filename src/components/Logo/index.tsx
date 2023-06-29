@@ -3,7 +3,7 @@ import { FC } from 'react';
 const Logo: FC = () => {
   return (
     <div className="tw-flex">
-      <div className="">Ink Nest Admin</div>
+      <div className="tw-text-2xl tw-font-semibold">Ink Nest Admin</div>
     </div>
   );
 };
