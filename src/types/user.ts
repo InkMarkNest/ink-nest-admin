@@ -1,4 +1,15 @@
-import { ModulePermission } from './route';
+export interface UserPermission {
+  id: string;
+  resource: string;
+  action: string;
+  description: string;
+}
+
+export interface Role {
+  id: string;
+  name: string;
+  permissions: UserPermission[];
+}
 
 /**
  * 用户数据类型定义
@@ -10,11 +21,7 @@ export type User = {
   /**
    * 用户 角色表
    */
-  roles: string[];
-  /**
-   * 用户 路由权限
-   */
-  permissions: ModulePermission[];
+  roles: Role[];
 };
 
 /**
@@ -88,15 +95,9 @@ export interface UserActions {
  */
 export type UserStore = UserState & UserActions;
 
-export interface LoginParams {
-  username: string;
-  password: string;
-}
-
-export interface LoginResponse {
-  token: string;
-}
-
+/**
+ * 用户信息
+ */
 export interface UserInfo {
   userInfo: User;
 }

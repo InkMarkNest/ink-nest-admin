@@ -1,13 +1,22 @@
-import { ModulePermission } from '@/types/route';
+import { Role } from '../types/user';
 
-const hasRoutePermission = (
-  moduleId: string,
-  routeId: string,
-  permissions: ModulePermission[] | undefined,
-) => {
-  const module = permissions?.find((p) => p.moduleId === moduleId);
+/**
+ * 检查用户是否具有访问指定路由的权限
+ * @param roles 用户的角色列表
+ * @param route 当前路由
+ */
+const hasRoutePermission = (roles: Role[], route: string): boolean => {
+  const routePath = route.replace(/^\//, '');
+  // 检查用户角色列表中的所有权限
+  for (const role of roles) {
+    for (const userPermission of role.permissions) {
+      if (userPermission.resource === routePath) {
+        return false;
+      }
+    }
+  }
 
-  return module?.routes.some((route) => route.id === routeId && route.granted) ?? false;
+  return true;
 };
 
 export { hasRoutePermission };

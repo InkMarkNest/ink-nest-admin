@@ -6,6 +6,7 @@ import { RouteObject } from 'react-router-dom';
 export interface RouterOtherProps {
   props?: {
     isMenu: boolean;
+    public?: boolean;
   };
   roles?: string[];
   children?: ExtendedRouteObject[];
@@ -16,20 +17,6 @@ export type ExtendedRouteObject = RouteObject & RouterOtherProps;
 
 export interface AuthGuardComponent {
   element: ReactNode;
-  moduleId: string;
-  routeId: string;
-}
-
-export interface RoutePermission {
-  id: string;
-  description: string;
-  granted: boolean;
-}
-
-export interface ModulePermission {
-  moduleId: string;
-  description: string;
-  routes: RoutePermission[];
 }
 
 export type MenuItem = Required<MenuProps>['items'][number];

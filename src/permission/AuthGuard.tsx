@@ -8,7 +8,7 @@ import { CommonPath } from '@/router/Constant';
 
 import { hasRoutePermission } from './permissionChecker';
 
-const AuthGuard: FC<AuthGuardComponent> = ({ element, moduleId, routeId }) => {
+const AuthGuard: FC<AuthGuardComponent> = ({ element }) => {
   const user = useUserStore.use.user();
 
   const location = useLocation();
@@ -26,7 +26,7 @@ const AuthGuard: FC<AuthGuardComponent> = ({ element, moduleId, routeId }) => {
 
   // 如果用户已登录但没有权限，引导至无权限页面
   // 注意：如果用户正在访问登录页面，我们不检查权限
-  if (isLoggedIn && !isVisitingLogin && !hasRoutePermission(moduleId, routeId, user?.permissions)) {
+  if (isLoggedIn && !isVisitingLogin && hasRoutePermission(user.roles, location.pathname)) {
     return <Navigate to={CommonPath.NotAuthorized} state={{ from: location }} />;
   }
 

@@ -43,14 +43,17 @@ function getItem(
  * @returns {boolean | undefined} 用户是否有访问路径的权限，如果没有找到指定路径，返回 undefined
  */
 function isDisabled(user: User, path: string): boolean | undefined {
-  for (const permission of user.permissions) {
-    for (const route of permission.routes) {
-      if (path === route.id) {
-        return !route.granted;
+  const routePath = path.replace(/^\//, '');
+  // 检查用户角色列表中的所有权限
+  for (const role of user.roles) {
+    for (const userPermission of role.permissions) {
+      if (userPermission.resource === routePath) {
+        return false;
       }
     }
   }
-  return undefined;
+
+  return true;
 }
 
 /**
@@ -62,7 +65,6 @@ function isDisabled(user: User, path: string): boolean | undefined {
  */
 function convertRoutesToMenu(routes: any, user: User, parentPath = ''): MenuItem[] {
   let menuItems: MenuItem[] = [];
-
   for (const route of routes) {
     let children: MenuItem[] | undefined;
 
@@ -77,7 +79,8 @@ function convertRoutesToMenu(routes: any, user: User, parentPath = ''): MenuItem
     }
 
     if (route.props && route.props.isMenu) {
-      const disabled = isDisabled(user, route.path);
+      let disabled = isDisabled(user, fullPath);
+      disabled = route.props.public ? false : disabled;
       menuItems.push(getItem(route.path, route.id, fullPath, null, children, undefined, disabled));
     } else if (children) {
       menuItems = [...menuItems, ...children];

@@ -11,6 +11,7 @@ const dashboardRoutes: ExtendedRouteObject[] = [
     path: 'dashboard',
     props: {
       isMenu: true,
+      public: true,
     },
     children: [
       {
@@ -26,14 +27,14 @@ const dashboardRoutes: ExtendedRouteObject[] = [
         props: {
           isMenu: true,
         },
-        element: <AuthGuard element={<Workplace />} moduleId="dashboard" routeId="workplace" />,
+        element: <AuthGuard element={<Workplace />} />,
       },
       {
         path: 'monitor',
         props: {
           isMenu: true,
         },
-        element: <AuthGuard element={<Monitor />} moduleId="dashboard" routeId="monitor" />,
+        element: <AuthGuard element={<Monitor />} />,
       },
     ],
   },

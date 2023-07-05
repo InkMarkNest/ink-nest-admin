@@ -9,7 +9,8 @@ import { AuthGuard } from '@/permission/AuthGuard';
 
 import { ExtendedRouteObject } from '@/types/route';
 
-import { dashboardRoutes, studyRoutes } from './modules';
+import { dashboardRoutes, postsRoutes, studyRoutes } from './modules';
+import { usersRoutes } from './modules/users';
 
 const routesConfig: ExtendedRouteObject[] = [
   {
@@ -24,6 +25,8 @@ const routesConfig: ExtendedRouteObject[] = [
         element: <Navigate to="/dashboard" />,
       },
       ...dashboardRoutes,
+      ...usersRoutes,
+      ...postsRoutes,
     ],
   },
   {
@@ -31,7 +34,7 @@ const routesConfig: ExtendedRouteObject[] = [
     props: {
       isMenu: false,
     },
-    element: <AuthGuard element={<Login />} moduleId="" routeId="" />,
+    element: <AuthGuard element={<Login />} />,
   },
   {
     path: '/not-authorized',

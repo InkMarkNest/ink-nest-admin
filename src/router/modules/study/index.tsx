@@ -12,6 +12,7 @@ const studyRoutes: ExtendedRouteObject[] = [
     element: <ContentLayout />,
     props: {
       isMenu: true,
+      public: true,
     },
     children: [
       {
@@ -23,6 +24,7 @@ const studyRoutes: ExtendedRouteObject[] = [
         path: 'game',
         props: {
           isMenu: true,
+          public: true,
         },
         element: <Game />,
       },
