@@ -1,4 +1,5 @@
-import { LoginParams, LoginResponse, UserInfo } from '@/types/user';
+import { UserInfo } from '@/types/user';
+import { LoginParams, LoginResponse } from '@/types/login';
 
 import { Get, Post } from '../http';
 

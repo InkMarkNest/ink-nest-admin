@@ -70,10 +70,6 @@ const useUserStoreBase = create(
         state.isLoaded = false;
       });
     },
-    hasRole: (role) => {
-      const { user } = get();
-      return user !== null && user.roles.includes(role);
-    },
     init: async () => {
       const user = await getItem<User | null>('userInfo');
       const token = await getItem<string | null>('inkToken');

@@ -12,9 +12,7 @@ import { login, getUserInfo } from '@/services';
 
 import { CommonPath } from '@/router/Constant';
 
-import { LoginParams } from '@/types/user';
-
-import { LoginFormFinishedParams } from '@/types/login';
+import { LoginParams, LoginFormFinishedParams } from '@/types/login';
 
 /**
  * 登录页面组件

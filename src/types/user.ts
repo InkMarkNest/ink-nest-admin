@@ -74,12 +74,6 @@ export interface UserActions {
    */
   logout: () => Promise<void>;
   /**
-   * 检查用户是否有特定角色
-   * @param {string} role - 需要检查的角色
-   * @return {boolean} 是否具有该角色
-   */
-  hasRole: (role: string) => boolean;
-  /**
    * 初始化加载
    */
   init: () => Promise<void>;
